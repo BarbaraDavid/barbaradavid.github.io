@@ -257,7 +257,9 @@
             <span class="logo-tagline">Lima, Perú</span>
         </div>
         <p>¿Te gustaría una pieza personalizada para tu hogar?</p>
-        <a href="https://wa.me/973942694" class="cta-button">Consultar por WhatsApp</a>
+<a href="wa.me" class="whatsapp-float" target="_blank">
+   <img src="upload.wikimedia.org" alt="WhatsApp" width="30">
+</a>
     </section>
 
     <footer style="padding: 3rem; text-align: center; background: #fff; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase;">
@@ -435,23 +437,27 @@
         // Se llama así desde el HTML: onclick="openModal('Título', 'Descripción', 'URL-Imagen')"
 
 function openModal(titulo, descripcion) {
-    // Asegúrate de que estos IDs existan en tu HTML
-    const modal = document.getElementById("myModal");
-    const titleElem = document.getElementById("modalTitle");
-    const descElem = document.getElementById("modalDescription");
-
-    if (modal && titleElem && descElem) {
-        titleElem.innerText = titulo;
-        descElem.innerText = descripcion;
-        modal.style.display = "block";
-        document.body.style.overflow = "hidden"; // Evita scroll al estar abierto
-    }
+ const modal = document.getElementById("myModal");
+    // Actualizamos textos
+    document.getElementById("modalTitle").innerText = titulo;
+    document.getElementById("modalDescription").innerText = descripcion;
+    
+    // Mostramos el modal
+    modal.style.display = "flex"; // Usamos flex para centrar
+    document.body.style.overflow = "hidden";
 }
 
-// Función para cerrar
 function closeModal() {
     document.getElementById("myModal").style.display = "none";
     document.body.style.overflow = "auto";
+}
+
+// Cerrar si se hace clic fuera del contenido blanco
+window.onclick = function(event) {
+    const modal = document.getElementById("myModal");
+    if (event.target == modal) {
+        closeModal();
+    }
 }
         // Evento para cerrar al hacer clic en la X
         if(closeBtn) {
@@ -478,9 +484,15 @@ function closeModal() {
     <!-- ========================================= -->
     <!-- FIN BLOQUE MODAL POP-UP                   -->
     <!-- ========================================= -->
+<!-- Botón Flotante -->
+<a href="wa.me" class="whatsapp-float" target="_blank">
+   <img src="upload.wikimedia.org" alt="WhatsApp" width="30">
+</a>
+    
 </body>
 
 </html>
+
 
 
 
