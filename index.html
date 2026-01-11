@@ -112,23 +112,27 @@
 
         /* --- GALERÍA --- */
         #obras { padding: 5rem 10%; background: #fff; }
-        .grid-obras {
+.grid-obras {
     display: grid;
-    /* En web intentará poner 2 o más, en móvil bajará a 1 automáticamente */
-    grid-template-columns: repeat(auto-fit, minmax(min(45%, 400px), 1fr));
-    gap: 2rem; /* Reducimos un poco el espacio para que quepan mejor */
-    margin-top: 3rem;
-        }
+    /* En móvil 1 col, en tablets 2, en desktop 3 */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 2.5rem;
+    padding: 0 5%; /* Añade aire a los costados */
+}
 
         .obra-card img {
     width: 100%;
     height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
     aspect-ratio: 1 / 1; /* Esto evita que las imágenes sean infinitamente largas */
     object-fit: cover;
     display: block;
 
 }
-        .obra-card:hover img { filter: grayscale(100%); }
+        .obra-card:hover img { 
+                transform: scale(1.02); /* Crece sutilmente */
+    filter: brightness(0.9); /* Se oscurece un poco */
         .obra-info h3 { font-family: 'Playfair Display', serif; margin-top: 1.5rem; font-size: 1.4rem; }
 
         /* --- CONTACTO --- */
@@ -268,23 +272,9 @@
 
 /* Caja blanca del modal */
 .modal-content {
-    background-color: var(--bg-color);
-    margin: 20px auto;
-    padding: 20px;
-    width: 100%;
-    max-width: 900px; /* Ancho máximo en web */
-    display: flex;
-    flex-direction: column; /* Por defecto para móvil */
-    gap: 20px;
-    border-radius: 4px;
-}
-
-/* Imagen dentro del modal */
-#modalImg {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1; /* También cuadrada en el modal si gustas */
-    object-fit: cover;
+    max-width: 500px; /* Más estrecho para que sea legible */
+    text-align: center;
+    padding: 40px;
 }
 
 /* Ajuste para Web (Pantallas medianas y grandes) */
@@ -296,11 +286,11 @@
     }
     
     #modalImg {
-        width: 50%; /* Ocupa la mitad del ancho */
+    display: none;
     }
 
     .modal-info {
-        width: 50%;
+    width: 100% !important; /* Que el texto ocupe todo el ancho */
     }
 }
         /* Botón de Cerrar (X) */
@@ -429,14 +419,12 @@
 
         // Función para abrir el modal con datos dinámicos
         // Se llama así desde el HTML: onclick="openModal('Título', 'Descripción', 'URL-Imagen')"
-        function openModal(title, desc, imgSrc) {
-            modal.style.display = "block";
-            modalImg.src = imgSrc;
-            modalTitle.innerText = title;
-            modalDesc.innerText = desc;
-            // Bloquear scroll del fondo
-            document.body.style.overflow = "hidden";
-        }
+        function openModal(title, desc) {
+    document.getElementById("modalTitle").innerText = titulo;
+    document.getElementById("modalDescription").innerText = descripcion;
+    document.getElementById("myModal").style.display = "block";
+    document.body.style.overflow = "hidden"; // Bloquea scroll fondo
+}
 
         // Función para cerrar el modal
         function closeModal() {
@@ -473,6 +461,7 @@
 </body>
 
 </html>
+
 
 
 
