@@ -80,7 +80,7 @@
 
         /* --- HERO SECTION --- */
         header {
-            height: 70vh;
+            height: 40vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -88,20 +88,34 @@
             background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(242,240,235,1) 100%);
         }
 
-        .hero-logo .logo-name { font-size: clamp(2rem, 8vw, 3.5rem); }
-        .hero-logo .logo-tagline { font-size: 1.2rem; margin-top: 10px; }
-        .hero-logo .knot-icon { width: 120px; height: 60px; margin-bottom: 15px; }
+        .hero-logo .logo-name { font-size: 2.2rem; }
+        .hero-logo .logo-tagline { font-size: 0.9rem; margin-top: 10px; letter-spacing: 4px; }
+        .hero-logo .knot-icon { width: 80px; height: auto; }
 
         /* --- SOBRE MÍ --- */
         #sobre-mi {
-    padding: 6rem 10%;
-    display: flex;        /* Cambiado de grid a flex */
-    justify-content: center;
-    text-align: center;   /* Centra el texto */
-    max-width: 800px;     /* Para que no se estire demasiado en web */
+    position: relative;
+    padding: 8rem 10%;
+    text-align: center;
+    overflow: hidden;
+    background: none; /* Quitamos el fondo sólido */
+}
+    #sobre-mi::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    /* Reemplaza este link por tu imagen de textura de nudos o hilos */
+    background-image: url('images.unsplash.com');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15; /* Aquí controlas la transparencia */
+    z-index: -1;
+}
+        .content {
+    max-width: 700px;
     margin: 0 auto;
 }
-
+        
         .img-perfil {
             width: 75%;
             height: 300px;
@@ -467,6 +481,7 @@ function closeModal() {
 </body>
 
 </html>
+
 
 
 
