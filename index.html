@@ -123,8 +123,10 @@
         .obra-card img {
     width: 100%;
     height: auto;
-    aspect-ratio: 3 / 4; /* Esto evita que las imágenes sean infinitamente largas */
+    aspect-ratio: 1 / 1; /* Esto evita que las imágenes sean infinitamente largas */
     object-fit: cover;
+    display: block;
+
 }
         .obra-card:hover img { filter: grayscale(100%); }
         .obra-info h3 { font-family: 'Playfair Display', serif; margin-top: 1.5rem; font-size: 1.4rem; }
@@ -250,46 +252,55 @@
     <!-- Estilos CSS para el Modal -->
     <style>
         /* Estilos del Modal (Pop-Up) */
-        .modal {
-            display: none; /* Oculto por defecto */
-            position: fixed; 
-            z-index: 2000; /* Encima de todo */
-            left: 0;
-            top: 0;
-            width: 75%; 
-            height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0,0,0,0.85); /* Fondo oscuro semitransparente */
-            backdrop-filter: blur(5px);
-            animation: fadeIn 0.3s;
-        }
-
-        .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
+/* Contenedor oscuro de fondo */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    overflow-y: auto; /* Permite scroll si el contenido es largo */
     padding: 20px;
-    width: 90%; /* En móviles ocupará casi todo el ancho */
-    max-width: 800px; /* En web no crecerá más de esto */
-    display: flex;
-    flex-direction: column; /* Apila imagen y texto en móvil */
-    gap: 20px;
 }
 
-/* Ajuste para la imagen dentro del modal */
+/* Caja blanca del modal */
+.modal-content {
+    background-color: var(--bg-color);
+    margin: 20px auto;
+    padding: 20px;
+    width: 100%;
+    max-width: 900px; /* Ancho máximo en web */
+    display: flex;
+    flex-direction: column; /* Por defecto para móvil */
+    gap: 20px;
+    border-radius: 4px;
+}
+
+/* Imagen dentro del modal */
 #modalImg {
     width: 100%;
-    max-height: 70vh; /* Evita que la imagen sea más alta que la pantalla */
-    object-fit: contain; /* Muestra la imagen completa sin recortar */
+    height: auto;
+    aspect-ratio: 1 / 1; /* También cuadrada en el modal si gustas */
+    object-fit: cover;
 }
 
-/* Media query para pantallas grandes (Web) */
+/* Ajuste para Web (Pantallas medianas y grandes) */
 @media (min-width: 768px) {
     .modal-content {
-        flex-direction: row; /* Imagen a la izquierda, texto a la derecha */
-        align-items: center;
+        flex-direction: row; /* Imagen a un lado, texto al otro */
+        align-items: flex-start;
+        margin: 10% auto;
     }
+    
     #modalImg {
-        width: 50%; /* La imagen toma la mitad del modal */
+        width: 50%; /* Ocupa la mitad del ancho */
+    }
+
+    .modal-info {
+        width: 50%;
     }
 }
         /* Botón de Cerrar (X) */
@@ -462,5 +473,6 @@
 </body>
 
 </html>
+
 
 
