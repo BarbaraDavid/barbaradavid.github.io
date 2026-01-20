@@ -281,8 +281,11 @@ width: 100%;
                 margin: 10% auto;
             }
             .modal-img {
-                /* CAMBIO: Altura imagen modal en móvil reducida a 200px */
-                height: 200px;
+height: auto;          /* Deja que la altura se ajuste sola */
+    max-height: 400px;     /* Ponemos un límite para que no sea ETERNA en fotos verticales */
+    width: 100%;           /* Ocupa todo el ancho */
+    object-fit: contain;   /* CLAVE: Esto asegura que NUNCA se recorte, muestra la foto entera */
+    background-color: #f0f0f0; /* Un fondo gris suave por si la foto es muy angosta */
             }
             .modal-details {
                 padding: 20px;
@@ -458,6 +461,7 @@ width: 100%;
 
 </body>
 </html>
+
 
 
 
