@@ -102,12 +102,13 @@
         }
 
         .img-perfil {
-width: 100%;        /* Ocupa el ancho disponible de la columna */
-    max-width: 450px;   /* Evita que se haga gigante en pantallas grandes */
-    height: auto;       /* ESTA ES LA CLAVE: La altura se ajusta sola a la foto */
+width: 100%;
+    max-width: 350px;   /* <--- ANTES ERA 450px. Cámbialo a 350px (o menos si quieres) */
+    height: auto;       /* Esto asegura que la proporción se mantenga perfecta */
     display: block;
-    margin: 0 auto;     /* Centra la imagen */
-    border-radius: 4px; /* Un borde suave */
+    margin: 0 auto;     /* Esto la mantiene centrada */
+    border-radius: 4px;
+    box-shadow: 10px 10px 0px rgba(140, 115, 85, 0.2);
     box-shadow: 10px 10px 0px rgba(140, 115, 85, 0.2); /* Sombra decorativa */
         }
 
@@ -457,6 +458,7 @@ width: 100%;
 
 </body>
 </html>
+
 
 
 
