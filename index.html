@@ -102,14 +102,13 @@
         }
 
         .img-perfil {
-width: 100%;       /* Ocupa el ancho de su columna */
-    max-width: 400px;  /* Pero que no se haga gigante */
-    height: 350px;     /* Altura fija */
-    object-fit: cover; /* Mágica: recorta la foto para que no se estire ni aplaste */
-    border-radius: 2px;
-    box-shadow: 10px 10px 0px rgba(140, 115, 85, 0.2); /* Un detalle elegante de sombra */
-    display: block;    
-    margin: 0 auto;    /* Centrada */
+width: 100%;        /* Ocupa el ancho disponible de la columna */
+    max-width: 450px;   /* Evita que se haga gigante en pantallas grandes */
+    height: auto;       /* ESTA ES LA CLAVE: La altura se ajusta sola a la foto */
+    display: block;
+    margin: 0 auto;     /* Centra la imagen */
+    border-radius: 4px; /* Un borde suave */
+    box-shadow: 10px 10px 0px rgba(140, 115, 85, 0.2); /* Sombra decorativa */
         }
 
         .content h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1.5rem; }
@@ -458,6 +457,7 @@ width: 100%;
 
 </body>
 </html>
+
 
 
 
