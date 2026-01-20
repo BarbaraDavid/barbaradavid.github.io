@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bárbara David | Arte en Nudos</title>
-    <link href="BarbaraDavid" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #faf9f6;
@@ -86,7 +86,11 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(242,240,235,1) 100%);
+            
+            /* 1. CAMBIAR PORTADA AQUÍ: Reemplaza 'quipu para portada.JPG' con el nombre de tu foto */
+            background-image: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(242,240,235,0.8) 100%), url('quipu para portada.JPG');
+            background-size: cover;
+            background-position: center;
         }
 
         .hero-logo .logo-name { font-size: 3.5rem; }
@@ -106,7 +110,8 @@
             width: 80%;
             /* CAMBIO: Reducida la altura de 500px a 350px */
             height: 350px;
-            background: url('BarbaraDavid.jpg') center/cover;
+            background-size: cover;
+            background-position: center;
             border-radius: 2px;
         }
 
@@ -281,7 +286,10 @@
     </header>
 
     <section id="sobre-mi">
-        <div class="img-perfil"></div>
+        <!-- 2. CAMBIAR FOTO DE PERFIL AQUÍ -->
+        <!-- Reemplaza el enlace https://... con 'mifoto.jpg' (asegúrate de que el archivo esté en la carpeta) -->
+        <img class="img-perfil" src="https://images.unsplash.com/photo-1544928147-79a2dbc1f389?auto=format&fit=crop&w=800&q=80" alt="Bárbara David - Artista">
+        
         <div class="content">
             <h2>Hilos con historia</h2>
             <p>Soy Bárbara David, y creo que los Quipus son la forma más pura de diseño abstracto que nuestra cultura nos ha regalado.</p>
@@ -292,48 +300,8 @@
 
     <section id="obras">
         <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2.5rem;">Colección Selección</h2>
-        <div class="grid-obras">
-            <!-- Obra 1 -->
-            <div class="obra-card" onclick="openModal('Horizonte de Nudos', 'Algodón Pima y tintes naturales. Una pieza que evoca la serenidad de los paisajes andinos.', 'https://images.unsplash.com/photo-1515516089376-88db1e26e9c0?auto=format&fit=crop&w=800&q=80')">
-                <img src="planeta1" alt="Obra">
-                <div class="obra-info">
-                    <h3>Horizonte de Nudos</h3>
-                    <p>Algodón Pima y tintes naturales.</p>
-                </div>
-            </div>
-            <!-- Obra 2 -->
-            <div class="obra-card" onclick="openModal('Memoria Táctil', 'Lana de alpaca sobre bastidor de madera. Texturas que invitan a conectar con nuestras raíces.', 'https://images.unsplash.com/photo-1508285891879-c6f7c09bec7d?auto=format&fit=crop&w=800&q=80')">
-                <img src="planeta2" alt="Obra">
-                <div class="obra-info">
-                    <h3>Memoria Táctil</h3>
-                    <p>Lana de alpaca sobre bastidor de madera.</p>
-                </div>
-            </div>
-             <!-- Obra 3 (Ejemplo) -->
-             <div class="obra-card" onclick="openModal('Ecos del Tiempo', 'Fibras mixtas y nudos complejos. Una representación abstracta del paso del tiempo.', 'https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=800&q=80')">
-                <img src="https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=800&q=80" alt="Obra">
-                <div class="obra-info">
-                    <h3>Ecos del Tiempo</h3>
-                    <p>Fibras mixtas y nudos complejos.</p>
-                </div>
-            </div>
-            <!-- Obra 4 (Ejemplo) -->
-            <div class="obra-card" onclick="openModal('Raíces Profundas', 'Yute y algodón crudo. Un homenaje a la tierra y su fuerza.', 'https://images.unsplash.com/photo-1531913764164-f85c52e6e654?auto=format&fit=crop&w=800&q=80')">
-                <img src="https://images.unsplash.com/photo-1531913764164-f85c52e6e654?auto=format&fit=crop&w=800&q=80" alt="Obra">
-                <div class="obra-info">
-                    <h3>Raíces Profundas</h3>
-                    <p>Yute y algodón crudo.</p>
-                </div>
-            <!-- INICIO DE NUEVA OBRA -->
-<div class="obra-card" onclick="openModal('TÍTULO DE LA OBRA', 'DESCRIPCIÓN LARGA QUE SALE EN EL POP-UP', 'NOMBRE_DE_TU_IMAGEN.jpg')">
-    <img src="planeta1.jpg" alt="TÍTULO DE LA OBRA">
-    <div class="obra-info">
-        <h3>TÍTULO DE LA OBRA</h3>
-        <p>DESCRIPCIÓN CORTA / MATERIALES</p>
-    </div>
-</div>
-<!-- FIN DE NUEVA OBRA -->
-            </div>
+        <div class="grid-obras" id="gallery-grid">
+            <!-- Las obras se cargan automáticamente desde el script de abajo -->
         </div>
     </section>
 
@@ -343,11 +311,11 @@
             <span class="logo-tagline">Lima, Perú</span>
         </div>
         <p>¿Te gustaría una pieza personalizada para tu hogar?</p>
-        <a href="https://wa.me/TUNUMERO" class="cta-button">Consultar por WhatsApp</a>
+        <a href="https://wa.me/973942694" class="cta-button">Consultar por WhatsApp</a>
     </section>
 
     <footer style="padding: 3rem; text-align: center; background: #fff; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase;">
-        &copy; 2024 Bárbara David | Hecho a mano en Lima
+        &copy; 2026 Bárbara David | Arte en nudo
     </footer>
 
     <!-- MODAL STRUCTURE -->
@@ -366,6 +334,73 @@
     </div>
 
     <script>
+        // --- 3. CAMBIAR FOTOS DE LA GALERÍA AQUÍ ---
+        const obras = [
+            {
+                id: "memoria-planeta",
+                title: "Memoria del planeta",
+                subtitle: "Hilos 100% algodón",
+                desc: "56 fechas que afectaron el medio ambiente desde 1886 hasta el 2025.",
+                price: "$100 USD",
+                // REEMPLAZA LOS NOMBRES DE ARCHIVO ABAJO CON LOS TUYOS
+                images: ["obraquipuplaneta1.png"],  
+                status: "Disponible"
+            },
+            {
+                id: "memoria-peru",
+                title: "Memoria del Perú",
+                subtitle: "Hilos 100% algodón",
+                desc: "Este quipu narra la historia del Perú desde el Virreinato hasta 2025.",
+                price: "$100 USD",
+                // REEMPLAZA AQUÍ
+                images: ["obraquipuperu1.png"],     
+                status: "Disponible"
+            },
+            {
+                id: "memoria-planeta2",
+                title: "Memoria del planeta (2)",
+                subtitle: "Hilos 100% algodón",
+                desc: "Variación de la serie ecológica, enfocada en el cambio climático.",
+                price: "$100 USD",
+                // REEMPLAZA AQUÍ
+                images: ["obraquipuplaneta1.png"],  
+                status: "Disponible"
+            },
+            {
+                id: "memoria-mujeres",
+                title: "Mujeres Latinoamericanas",
+                subtitle: "Hilos 100% algodón",
+                desc: "Este quipu narra la historia de mujeres que marcaron el feminismo.",
+                price: "$100 USD",
+                // REEMPLAZA AQUÍ
+                images: ["obraquipuperu1.png"],     
+                status: "Disponible"
+            }
+            // PUEDES AGREGAR MÁS OBRAS COPIANDO Y PEGANDO EL BLOQUE ENTRE { ... },
+        ];
+
+        // --- RENDERIZADO AUTOMÁTICO DE LA GALERÍA ---
+        const galleryGrid = document.getElementById('gallery-grid');
+        if (galleryGrid) {
+            obras.forEach(obra => {
+                const imgPortada = obra.images.length > 0 ? obra.images[0] : 'https://placehold.co/600x600/b8860b/ffffff?text=Sin+Imagen';
+                
+                // Usamos encodeURIComponent para pasar datos seguros a la función onclick
+                const safeTitle = obra.title.replace(/'/g, "\\'");
+                const safeDesc = obra.desc.replace(/'/g, "\\'");
+
+                const obraHTML = `
+                <div class="obra-card" onclick="openModal('${planeta1.png}', '${safeDesc}', '${imgPortada}')">
+                    <img src="${planeta1}" alt="${obra.title}">
+                    <div class="obra-info">
+                        <h3>${obra.title}<p>
+                        <p>${obra.subtitle}</p>
+                    </div>
+                </div>`;
+                galleryGrid.innerHTML += obraHTML;
+            });
+        }
+
         // Obtener elementos del modal
         var modal = document.getElementById("modal-obra");
         var modalImg = document.getElementById("modal-img");
@@ -387,8 +422,10 @@
         }
 
         // Evento para cerrar al hacer clic en la X
-        closeBtn.onclick = function() {
-            closeModal();
+        if(closeBtn) {
+            closeBtn.onclick = function() {
+                closeModal();
+            }
         }
 
         // Evento para cerrar al hacer clic fuera del modal
@@ -397,13 +434,14 @@
                 closeModal();
             }
         }
+        
+        // Cerrar con la tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
     </script>
 
 </body>
 </html>
-
-
-
-
-
-
