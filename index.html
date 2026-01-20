@@ -112,20 +112,56 @@
 
         .content h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1.5rem; }
 
-        /* --- GALERÍA --- */
-        #obras { padding: 5rem 10%; background: #fff; }
-        .grid-obras {
-            display: grid;
-            /* CAMBIO: Reducido el tamaño mínimo de columna para tarjetas más pequeñas */
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-        }
+#obras { 
+    padding: 5rem 10%; 
+    background: #fff; 
+}
 
-        /* CAMBIO: Reducida la altura de las imágenes de 500px a 300px */
-        .obra-card img { width: 100%; height: 300px; object-fit: cover; transition: 0.5s; }
-        .obra-card:hover img { filter: grayscale(100%); }
-        .obra-info h3 { font-family: 'Playfair Display', serif; margin-top: 1.5rem; font-size: 1.4rem; }
+.grid-obras {
+    display: grid;
+    /* Esto hace que las columnas se ajusten solas según el tamaño de pantalla */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.obra-card {
+    cursor: pointer; /* Muestra una manito al pasar el mouse */
+    background: transparent;
+    transition: transform 0.3s ease;
+}
+
+/* Efecto al pasar el mouse sobre toda la tarjeta */
+.obra-card:hover {
+    transform: translateY(-5px); /* Sube un poquito la tarjeta */
+}
+
+.obra-card img { 
+    width: 100%; 
+    height: 350px; /* Altura fija para que todas se vean iguales */
+    object-fit: cover; /* Recorta la imagen para que no se deforme */
+    border-radius: 4px; /* Bordes ligeramente redondeados */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Sombra suave */
+    transition: 0.5s; 
+}
+
+.obra-card:hover img { 
+    filter: brightness(0.8); /* Oscurece un poco en vez de poner gris */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.obra-info h3 { 
+    font-family: 'Playfair Display', serif; 
+    margin-top: 1rem; 
+    font-size: 1.3rem; 
+    color: var(--text-color);
+}
+
+.obra-info p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.3rem;
+}
 
         /* --- CONTACTO --- */
         #contacto {
@@ -290,52 +326,51 @@
         </div>
     </section>
 
-    <section id="obras">
-        <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2.5rem;">Colección Selección</h2>
-        <div class="grid-obras">
-            <!-- Obra 1 -->
-            <div class="obra-card" onclick="openModal('Horizonte de Nudos', 'Algodón Pima y tintes naturales. Una pieza que evoca la serenidad de los paisajes andinos.', 'https://images.unsplash.com/photo-1515516089376-88db1e26e9c0?auto=format&fit=crop&w=800&q=80')">
-                <img src="planeta1" alt="Obra">
-                <div class="obra-info">
-                    <h3>Horizonte de Nudos</h3>
-                    <p>Algodón Pima y tintes naturales.</p>
-                </div>
-            </div>
-            <!-- Obra 2 -->
-            <div class="obra-card" onclick="openModal('Memoria Táctil', 'Lana de alpaca sobre bastidor de madera. Texturas que invitan a conectar con nuestras raíces.', 'https://images.unsplash.com/photo-1508285891879-c6f7c09bec7d?auto=format&fit=crop&w=800&q=80')">
-                <img src="planeta2" alt="Obra">
-                <div class="obra-info">
-                    <h3>Memoria Táctil</h3>
-                    <p>Lana de alpaca sobre bastidor de madera.</p>
-                </div>
-            </div>
-             <!-- Obra 3 (Ejemplo) -->
-             <div class="obra-card" onclick="openModal('Ecos del Tiempo', 'Fibras mixtas y nudos complejos. Una representación abstracta del paso del tiempo.', 'https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=800&q=80')">
-                <img src="https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=800&q=80" alt="Obra">
-                <div class="obra-info">
-                    <h3>Ecos del Tiempo</h3>
-                    <p>Fibras mixtas y nudos complejos.</p>
-                </div>
-            </div>
-            <!-- Obra 4 (Ejemplo) -->
-            <div class="obra-card" onclick="openModal('Raíces Profundas', 'Yute y algodón crudo. Un homenaje a la tierra y su fuerza.', 'https://images.unsplash.com/photo-1531913764164-f85c52e6e654?auto=format&fit=crop&w=800&q=80')">
-                <img src="https://images.unsplash.com/photo-1531913764164-f85c52e6e654?auto=format&fit=crop&w=800&q=80" alt="Obra">
-                <div class="obra-info">
-                    <h3>Raíces Profundas</h3>
-                    <p>Yute y algodón crudo.</p>
-                </div>
-            <!-- INICIO DE NUEVA OBRA -->
-<div class="obra-card" onclick="openModal('TÍTULO DE LA OBRA', 'DESCRIPCIÓN LARGA QUE SALE EN EL POP-UP', 'NOMBRE_DE_TU_IMAGEN.jpg')">
-    <img src="planeta1.jpg" alt="TÍTULO DE LA OBRA">
-    <div class="obra-info">
-        <h3>TÍTULO DE LA OBRA</h3>
-        <p>DESCRIPCIÓN CORTA / MATERIALES</p>
-    </div>
-</div>
-<!-- FIN DE NUEVA OBRA -->
+<section id="obras">
+    <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 2rem;">
+        Colección Selección
+    </h2>
+    
+    <div class="grid-obras">
+        
+        <div class="obra-card" 
+             onclick="openModal('Horizonte de Nudos', 'Algodón Pima y tintes naturales. Evoca la serenidad andina.', 'planeta1.jpg')">
+            <img src="planeta1.jpg" alt="Horizonte de Nudos">
+            <div class="obra-info">
+                <h3>Horizonte de Nudos</h3>
+                <p>Algodón Pima y tintes naturales</p>
             </div>
         </div>
-    </section>
+
+        <div class="obra-card" 
+             onclick="openModal('Memoria Táctil', 'Lana de alpaca sobre bastidor. Texturas que conectan con raíces.', 'planeta2.jpg')">
+            <img src="planeta2.jpg" alt="Memoria Táctil">
+            <div class="obra-info">
+                <h3>Memoria Táctil</h3>
+                <p>Lana de alpaca sobre bastidor</p>
+            </div>
+        </div>
+
+        <div class="obra-card" 
+             onclick="openModal('Ecos del Tiempo', 'Fibras mixtas y nudos complejos sobre lino.', 'https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=800&q=80')">
+            <img src="https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=800&q=80" alt="Ecos del Tiempo">
+            <div class="obra-info">
+                <h3>Ecos del Tiempo</h3>
+                <p>Fibras mixtas</p>
+            </div>
+        </div>
+
+        <div class="obra-card" 
+             onclick="openModal('Raíces Profundas', 'Yute y algodón crudo. Homenaje a la tierra.', 'https://images.unsplash.com/photo-1531913764164-f85c52e6e654?auto=format&fit=crop&w=800&q=80')">
+            <img src="https://images.unsplash.com/photo-1531913764164-f85c52e6e654?auto=format&fit=crop&w=800&q=80" alt="Raíces Profundas">
+            <div class="obra-info">
+                <h3>Raíces Profundas</h3>
+                <p>Yute y algodón crudo</p>
+            </div>
+        </div>
+
+    </div>
+</section>
 
     <section id="contacto">
         <div class="logo-container" style="margin-bottom: 2rem;">
@@ -401,6 +436,7 @@
 
 </body>
 </html>
+
 
 
 
