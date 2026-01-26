@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bárbara David | Arte en Nudos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
             --bg-color: #faf9f6;
             --text-color: #333;
-            --accent-color: #8c7355; 
+            --accent-color: #8c7355; /* El tono bronce/tierra de tu logo */
             --light-grey: #e0e0e0;
         }
 
@@ -24,7 +22,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- LOGO --- */
+        /* --- LOGO EN CSS (Replicando la tarjeta) --- */
         .logo-container {
             display: flex;
             flex-direction: column;
@@ -32,7 +30,11 @@
             text-align: center;
         }
 
-        .knot-icon { width: 60px; height: 30px; margin-bottom: 5px; }
+        .knot-icon {
+            width: 60px;
+            height: 30px;
+            margin-bottom: 5px;
+        }
 
         .logo-name {
             font-family: 'Playfair Display', serif;
@@ -77,7 +79,8 @@
 
         /* --- HERO SECTION --- */
         header {
-            height: 70vh;
+            /* CAMBIO: Reducida la altura de 70vh a 50vh */
+            height: 50vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -99,49 +102,69 @@
         }
 
         .img-perfil {
-            width: 80%;
-            height: 350px;
-            /* CAMBIO: Se eliminan propiedades de background innecesarias */
-            border-radius: 2px;
-            margin: 0 auto;
-            object-fit: cover;
-            /* CAMBIO: Asegura que la parte central de la foto sea el foco */
-            object-position: center; 
-            display: block;
+width: 100%;
+    max-width: 350px;   /* <--- ANTES ERA 450px. Cámbialo a 350px (o menos si quieres) */
+    height: auto;       /* Esto asegura que la proporción se mantenga perfecta */
+    display: block;
+    margin: 0 auto;     /* Esto la mantiene centrada */
+    border-radius: 4px;
+    box-shadow: 10px 10px 0px rgba(140, 115, 85, 0.2);
+    box-shadow: 10px 10px 0px rgba(140, 115, 85, 0.2); /* Sombra decorativa */
         }
 
         .content h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1.5rem; }
 
-        /* --- GALERÍA (IMÁGENES GRANDES) --- */
-        #obras { padding: 5rem 5%; background: #fff; }
-        .grid-obras {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 4rem;
-            margin-top: 4rem;
-            /* CAMBIO: Centrar la cuadrícula si hay pocas obras */
-            justify-content: center;
-        }
+#obras { 
+    padding: 5rem 10%; 
+    background: #fff; 
+}
 
-        .obra-card {
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
+.grid-obras {
+    display: grid;
+    /* Esto hace que las columnas se ajusten solas según el tamaño de pantalla */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    margin-top: 2rem;
+}
 
-        .obra-card:hover {
-            transform: translateY(-5px);
-        }
+.obra-card {
+    cursor: pointer; /* Muestra una manito al pasar el mouse */
+    background: transparent;
+    transition: transform 0.3s ease;
+}
 
-        .obra-card img { 
-            width: 100%; 
-            height: 500px; 
-            object-fit: cover; 
-            /* CAMBIO: Asegura que la obra esté centrada en la tarjeta */
-            object-position: center; 
-            transition: 0.5s; 
-        }
-        .obra-card:hover img { filter: grayscale(100%); }
-        .obra-info h3 { font-family: 'Playfair Display', serif; margin-top: 1.5rem; font-size: 1.6rem; }
+/* Efecto al pasar el mouse sobre toda la tarjeta */
+.obra-card:hover {
+    transform: translateY(-5px); /* Sube un poquito la tarjeta */
+}
+
+.obra-card img { 
+width: 100%;
+    /* height: 350px;  <-- Asegúrate de que esto siga comentado o borrado */
+    aspect-ratio: 4 / 3; /* <-- CAMBIO AQUÍ: 4 unidades de ancho por 3 de alto */
+    object-fit: cover; /* Importante para que la imagen rellene el rectángulo sin deformarse */
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: 0.5s;
+}
+
+.obra-card:hover img { 
+    filter: brightness(0.8); /* Oscurece un poco en vez de poner gris */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.obra-info h3 { 
+    font-family: 'Playfair Display', serif; 
+    margin-top: 1rem; 
+    font-size: 1.3rem; 
+    color: var(--text-color);
+}
+
+.obra-info p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.3rem;
+}
 
         /* --- CONTACTO --- */
         #contacto {
@@ -164,13 +187,10 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            #sobre-mi { grid-template-columns: 1fr; gap: 2rem; }
+            #sobre-mi { grid-template-columns: 1fr; }
             .hero-logo .logo-name { font-size: 2.5rem; }
             nav { flex-direction: column; gap: 1rem; }
             nav .nav-links a { margin: 0 10px; }
-            .img-perfil { width: 100%; height: 300px; }
-            .grid-obras { grid-template-columns: 1fr; } 
-            .obra-card img { height: 400px; }
         }
 
         /* --- MODAL (POP UP) --- */
@@ -185,22 +205,18 @@
             overflow: auto; 
             background-color: rgba(0,0,0,0.8); 
             backdrop-filter: blur(5px);
-            animation: fadeIn 0.3s;
         }
 
         .modal-content {
             background-color: #fefefe;
-            margin: 2% auto; 
+            margin: 5% auto; 
             padding: 0;
             border: 1px solid #888;
-            width: 95%; 
-            max-width: 1100px;
+            width: 80%; 
+            max-width: 900px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             position: relative;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-            height: 90vh;
-            overflow: hidden;
         }
 
         .close-btn {
@@ -214,7 +230,12 @@
             z-index: 10;
         }
 
-        .close-btn:hover { color: black; text-decoration: none; cursor: pointer; }
+        .close-btn:hover,
+        .close-btn:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
         .modal-img-container {
             background-color: #f0f0f0;
@@ -223,28 +244,27 @@
             justify-content: center;
             overflow: hidden;
             height: 100%;
+            /* CAMBIO: Reducida altura mínima del modal de 400px a 300px */
+            min-height: 300px;
         }
 
         .modal-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* CAMBIO: Centrar imagen del modal */
-            object-position: center; 
         }
 
         .modal-details {
             padding: 40px;
             display: flex;
             flex-direction: column;
-            overflow-y: auto;
-            max-height: 90vh;
+            justify-content: center;
         }
 
         .modal-details h2 {
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             color: var(--text-color);
         }
 
@@ -254,122 +274,22 @@
             margin-bottom: 1rem;
         }
 
-        .modal-subtitle {
-             font-family: 'Montserrat', sans-serif;
-             font-size: 0.8rem;
-             text-transform: uppercase;
-             letter-spacing: 2px;
-             color: var(--accent-color);
-             margin-bottom: 1.5rem;
-             display: block;
-        }
-
-        /* Estilos del Video */
-        .video-container {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            position: relative;
-            width: 100%;
-            border-radius: 4px;
-            background: #000;
-        }
-        
-        .video-player {
-            width: 100%;
-            height: auto;
-            max-height: 300px;
-            display: block;
-        }
-
         @media (max-width: 768px) {
             .modal-content {
                 grid-template-columns: 1fr;
-                width: 95%;
-                margin: 5% auto;
-                height: auto;
-                max-height: 95vh;
-                overflow-y: scroll;
-                display: flex;
-                flex-direction: column;
+                width: 90%;
+                margin: 10% auto;
             }
-            .modal-img-container {
-                height: 300px;
-                min-height: 300px;
+            .modal-img {
+height: auto;          /* Deja que la altura se ajuste sola */
+    max-height: 400px;     /* Ponemos un límite para que no sea ETERNA en fotos verticales */
+    width: 100%;           /* Ocupa todo el ancho */
+    object-fit: contain;   /* CLAVE: Esto asegura que NUNCA se recorte, muestra la foto entera */
+    background-color: #f0f0f0; /* Un fondo gris suave por si la foto es muy angosta */
             }
             .modal-details {
                 padding: 20px;
-                overflow-y: visible;
-                max-height: none;
             }
-        }
-        
-        @keyframes fadeIn {
-            from {opacity: 0}
-            to {opacity: 1}
-        }
-
-        /* ESTILOS FORMULARIO */
-        .form-container {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 30px;
-            background-color: #fdfbf7;
-            border: 1px solid #d4af37;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            position: relative;
-        }
-        .form-container::before, .form-container::after {
-            content: ''; position: absolute; width: 20px; height: 20px; border: 2px solid #d4af37; transition: all 0.3s ease;
-        }
-        .form-container::before { top: -5px; left: -5px; border-right: none; border-bottom: none; }
-        .form-container::after { bottom: -5px; right: -5px; border-left: none; border-top: none; }
-
-        .form-container h2 {
-            font-family: 'Playfair Display', serif;
-            color: #1a1a1a;
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        .input-group { margin-bottom: 1.5rem; }
-        .input-row { display: flex; gap: 20px; margin-bottom: 1.5rem; }
-        @media (max-width: 768px) { .input-row { flex-direction: column; gap: 1.5rem; } }
-        
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            background-color: transparent;
-            border: none;
-            border-bottom: 2px solid #e0e0e0;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.95rem;
-            color: #666;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-        input:focus, select:focus, textarea:focus { border-color: #d4af37; color: #1a1a1a; }
-        select, option { color: #666; }
-        ::placeholder { color: #999; opacity: 1; }
-        
-        .btn-enviar {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background-color: #1a1a1a;
-            color: #fff;
-            border: none;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            font-weight: bold;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1.5rem;
-        }
-        .btn-enviar:hover {
-            background-color: #d4af37;
-            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -403,242 +323,177 @@
     </header>
 
     <section id="sobre-mi">
-        <!-- FOTO DE PERFIL -->
-        <img class="img-perfil" src="BarbaraDavid.jpg" alt="Bárbara David - Artista">
-        
-        <div class="content">
+<img src="BarbaraDavid.jpg" class="img-perfil" alt="Retrato de Bárbara">
+<div class="content">
             <h2>Hilos con historia</h2>
-            <p>Soy Bárbara David, y creo que los Quipus son la forma más pura de diseño abstracto que nuestra cultura nos ha regalado.</p>
-            <br>
-            <p>Desde mi estudio en Lima, transformo fibras naturales en piezas de arte contemporáneo, manteniendo viva la técnica del nudo pero adaptándola a la estética minimalista de hoy.</p>
+            <p>Hola, soy Bárbara. Mi pasión por los Quipus tradicionales nace de una profunda curiosidad por entender cómo las culturas precolombinas codificaban su mundo. Lo que para muchos es solo un sistema contable inca, para mí es un lenguaje lleno de sofisticación, diseño y memoria.
+</p>
+            <br>Como artista emergente, me dedico a desenredar esta historia. Mi trabajo busca rescatar la estética y la ingeniería del Quipu tradicional para traerlo a nuestros espacios contemporáneos. No se trata solo de replicar el pasado, sino de dialogar con él: usar sus texturas, sus ritmos y sus silencios para crear piezas que hablen de nuestra identidad hoy.</p>
+           
+            <br>En este espacio, comparto mi proceso de exploración y creación. Gracias por estar aquí y ser parte de este redescubrimiento.</p>
+            
         </div>
     </section>
 
-    <section id="obras">
-        <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2.5rem;">Colección Selección</h2>
-        <div class="grid-obras" id="gallery-grid">
-            <!-- Las obras se cargan automáticamente desde el script de abajo -->
-        </div>
-    </section>
-
-    <section id="contacto">
-        <div class="logo-container" style="margin-bottom: 2rem;">
-            <h2 class="logo-name">Bárbara David</h2>
-            <span class="logo-tagline">Lima, Perú</span>
-        </div>
+<section id="obras">
+    <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 2rem;">
+        Colección 
+    </h2>
+    
+    <div class="grid-obras">
         
-        <div class="form-container">
-            <h2>Tu Historia en Nudos</h2>
-            <p class="form-intro">Cuéntame qué quieres recordar y lo haré eterno. Escríbeme para separar tu quipu personalizado.</p>
+        <div class="obra-card" 
+             onclick="openModal('Planeta tierra', 'Algodón Pima y tintes naturales. Evoca la serenidad andina.', 'planeta1.png')">
+            <img src="planeta1.png" alt="Planeta tierra">
+            <div class="obra-info">
+                <h3>Planeta tierra</h3>
+                <p>Medidas:</p>
+            </div>
+        </div>
 
-            <form action="https://formspree.io/f/xbdrprll" method="POST" name="quipu-pedidos">
-                <div class="input-group">
-                    <input type="text" name="nombre" placeholder="Nombre de Contacto" required>
-                </div>
-                <div class="input-row">
-                    <input type="text" name="ciudad" placeholder="Ciudad / Distrito" required>
-                    <input type="text" name="pais" placeholder="País" required>
-                </div>
-                <div class="input-row">
-                    <input type="tel" name="telefono" placeholder="Teléfono / WhatsApp" required>
-                    <input type="email" name="email" placeholder="Email" required>
-                </div>
-                <div class="input-group">
-                    <select name="tema" required>
-                        <option value="" disabled selected>Tema Principal del Quipu</option>
-                        <option value="interes">Un tema de interés</option>
-                        <option value="vida">La historia de mi vida</option>
-                        <option value="amor">Mi historia de amor con mi pareja</option>
-                        <option value="viajes">Recuerdo de mis viajes</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <textarea name="mensaje" rows="5" placeholder="Cuéntame brevemente la historia..." required></textarea>
-                </div>
-                <button type="submit" class="btn-enviar">Enviar Solicitud</button>
-            </form>
+        <div class="obra-card" 
+             onclick="openModal('planeta tierra 2', 'Lana de alpaca sobre bastidor. Texturas que conectan con raíces.', 'planeta2.jpeg')">
+            <img src="planeta2.jpeg" alt="planeta tierra 2">
+            <div class="obra-info">
+                <h3>Planeta tierra 2</h3>
+                <p>Medidas: </p>
+            </div>
         </div>
-        <br><br>
-        <div style="text-align: center;">
-            <a href="https://wa.me/973942694" class="cta-button">O Consultar por WhatsApp</a>
+
+        <div class="obra-card" 
+             onclick="openModal('mujeres latinoamericanas', 'Fibras mixtas y nudos complejos sobre lino.', 'mujeres.png')">
+            <img src="mujeres.png" alt="Mujeres">
+            <div class="obra-info">
+                <h3>Mujeres</h3>
+                <p>Medidas:</p>
+            </div>
         </div>
-    </section>
+
+        <div class="obra-card" 
+             onclick="openModal('Cine blanco y negro', 'Yute y algodón crudo. Homenaje a la tierra.', 'cine.png')">
+            <img src="cine.png" alt="Cine blanco y negro">
+            <div class="obra-info">
+                <h3>Cine blanco y negro</h3>
+                <p>Medidas:</p>
+            </div>
+        </div>
+<div class="obra-card" 
+             onclick="openModal('Abanico Cromático', 'Composición radial que explora la transición de color desde el crudo hasta el borgoña intenso.', 'abanico.jpg')">
+            <img src="abanico.jpg" alt="Abanico Cromático">
+            <div class="obra-info">
+                <h3>Abanico Cromático</h3>
+                <p>Medidas:</p>
+            </div>
+        </div>
+
+        <div class="obra-card" 
+             onclick="openModal('Secuencia Lineal', 'Serie de paneles verticales con nudos rítmicos que evocan la lluvia y el silencio.', 'telares.jpg')">
+            <img src="telares.jpg" alt="Secuencia Lineal">
+            <div class="obra-info">
+                <h3>Secuencia Lineal</h3>
+                <p>Hilo de yute natural</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contacto">
+    <div class="logo-container" style="margin-bottom: 2rem;">
+        <h2 class="logo-name">Bárbara David</h2>
+        <span class="logo-tagline">Lima, Perú</span>
+    </div>
+    <p>¿Te interesa una pieza o te gustaría una pieza personalizada para tu hogar?</p>
+    
+    <a href="mailto:barbaradavid.arte@gmail.com?subject=Consulta%20sobre%20obra" class="cta-button">Consultar por correo</a>
+</section>
 
     <footer style="padding: 3rem; text-align: center; background: #fff; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase;">
-        &copy; 2026 Bárbara David | Arte en nudo
+        &copy; 2026 Bárbara David | Hecho a mano en Lima
     </footer>
 
-    <!-- MODAL STRUCTURE (POP-UP) -->
+    <!-- MODAL STRUCTURE -->
     <div id="modal-obra" class="modal">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
-            <!-- Columna Izquierda: Imagen -->
             <div class="modal-img-container">
                 <img id="modal-img" class="modal-img" src="" alt="Detalle de obra">
             </div>
-            <!-- Columna Derecha: Detalles + Video -->
             <div class="modal-details">
-                <span id="modal-subtitle" class="modal-subtitle">Colección Exclusiva</span>
                 <h2 id="modal-title">Título de la Obra</h2>
                 <p id="modal-desc">Descripción detallada de la obra.</p>
-                
-                <!-- Contenedor del Video -->
-                <div id="modal-video-container" class="video-container" style="display: none;">
-                    <!-- El video se inyectará aquí -->
-                </div>
-
-                <a href="#contacto" class="cta-button" onclick="closeModal()" style="text-align: center; margin-top: auto;">Me interesa</a>
+                <a href="#contacto" class="cta-button" onclick="closeModal()">Me interesa</a>
             </div>
         </div>
     </div>
 
     <script>
-        // --- Lógica del Menú Móvil ---
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
-        }
-
-        // --- DATA DE TUS OBRAS CON VIDEO LOCAL (.MP4) ---
-        // Pon el nombre de tu archivo de video que esté en la carpeta (ej: "mivideo.mp4")
-        // Si no hay video, deja la comillas vacías: ""
-        const obras = [
-            {
-                id: "memoria-planeta",
-                title: "Memoria del planeta",
-                subtitle: "Hilos 100% algodón",
-                desc: "56 fechas que afectaron el medio ambiente desde 1886 hasta el 2025.",
-                price: "$100 USD",
-                images: ["obraquipuplaneta1.png"],  
-                video: "video_planeta.mp4", // CAMBIAR POR TU ARCHIVO .MP4
-                status: "Disponible"
-            },
-            {
-                id: "memoria-peru",
-                title: "Memoria del Perú",
-                subtitle: "Hilos 100% algodón",
-                desc: "Este quipu narra la historia del Perú desde el Virreinato hasta 2025.",
-                price: "$100 USD",
-                images: ["obraquipuperu1.png"],     
-                video: "", // Sin video
-                status: "Disponible"
-            },
-             {
-                id: "memoria-planeta2",
-                title: "Memoria del planeta (2)",
-                subtitle: "Hilos 100% algodón",
-                desc: "Variación de la serie ecológica, enfocada en el cambio climático.",
-                price: "$100 USD",
-                images: ["obraquipuplaneta1.png"],  
-                video: "",
-                status: "Disponible"
-            },
-            {
-                id: "memoria-mujeres",
-                title: "Mujeres Latinoamericanas",
-                subtitle: "Hilos 100% algodón",
-                desc: "Este quipu narra la historia de mujeres que marcaron el feminismo.",
-                price: "$100 USD",
-                images: ["obraquipuperu1.png"],     
-                video: "",
-                status: "Disponible"
-            }
-        ];
-
-        // --- RENDERIZADO AUTOMÁTICO DE LA GALERÍA ---
-        const galleryGrid = document.getElementById('gallery-grid');
-        if (galleryGrid) {
-            obras.forEach(obra => {
-                const imgPortada = obra.images.length > 0 ? obra.images[0] : 'https://placehold.co/600x600/b8860b/ffffff?text=Sin+Imagen';
-                
-                const obraHTML = `
-                <div class="obra-card" onclick="openModal('${obra.id}')">
-                    <img src="${imgPortada}" alt="${obra.title}">
-                    <div class="obra-info">
-                        <h3>${obra.title}</h3>
-                        <p>${obra.subtitle}</p>
-                    </div>
-                </div>`;
-                galleryGrid.innerHTML += obraHTML;
-            });
-        }
-
-        // Modal Logic
+        // Obtener elementos del modal
         var modal = document.getElementById("modal-obra");
         var modalImg = document.getElementById("modal-img");
         var modalTitle = document.getElementById("modal-title");
         var modalDesc = document.getElementById("modal-desc");
-        var modalSubtitle = document.getElementById("modal-subtitle");
-        var videoContainer = document.getElementById("modal-video-container");
         var closeBtn = document.getElementsByClassName("close-btn")[0];
 
-        function openModal(id) {
-            const obra = obras.find(o => o.id === id);
-            if (!obra) return;
-
-            // Llenar datos básicos
+        // Función para abrir el modal con datos dinámicos
+        function openModal(title, desc, imgSrc) {
             modal.style.display = "block";
-            modalImg.src = obra.images[0];
-            modalTitle.innerText = obra.title;
-            modalSubtitle.innerText = obra.status;
-            modalDesc.innerText = obra.desc;
-
-            // Lógica del Video Local (.MP4)
-            if (obra.video) {
-                videoContainer.style.display = "block";
-                videoContainer.innerHTML = `
-                    <video class="video-player" controls style="width: 100%; height: auto;">
-                        <source src="${obra.video}" type="video/mp4">
-                        Tu navegador no soporta la reproducción de video.
-                    </video>
-                `;
-            } else {
-                videoContainer.style.display = "none";
-                videoContainer.innerHTML = ""; 
-            }
-
-            document.body.style.overflow = 'hidden'; 
+            modalImg.src = imgSrc;
+            modalTitle.innerText = title;
+            modalDesc.innerText = desc;
         }
 
+        // Función para cerrar el modal
         function closeModal() {
             modal.style.display = "none";
-            videoContainer.innerHTML = ""; // Detener video
-            document.body.style.overflow = 'auto'; 
         }
 
-        if(closeBtn) {
-            closeBtn.onclick = function() {
-                closeModal();
-            }
+        // Evento para cerrar al hacer clic en la X
+        closeBtn.onclick = function() {
+            closeModal();
         }
 
+        // Evento para cerrar al hacer clic fuera del modal
         window.onclick = function(event) {
             if (event.target == modal) {
                 closeModal();
             }
         }
-        
-        document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape") {
-                closeModal();
-            }
-        });
-
-        // Form logic
-        const form = document.querySelector('form[name="quipu-pedidos"]');
-        if (form) {
-             // ... lógica existente ...
-        }
     </script>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
