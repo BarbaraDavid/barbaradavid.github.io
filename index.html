@@ -426,7 +426,7 @@
 
     <section id="obras">
         <h2 class="section-title">Colección Reciente</h2>
-        <p class="section-subtitle">Piezas únicas disponibles y archivo de obras vendidas.</p>
+        <p class="section-subtitle">Piezas únicas y hachas a mano. Más detalles dando click en cada obra.</p>
         
         <div class="grid-obras">
             <div class="obra-card" onclick="openModal(1)">
@@ -440,35 +440,35 @@
                 <img src="planeta2.jpeg" alt="Planeta tierra 2">
                 <div class="obra-info">
                     <h3>Planeta tierra 2</h3>
-                    <p>Lana de alpaca sobre bastidor.</p>
+                    <p>Medidas: 40x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar</p>
                 </div>
             </div>
             <div class="obra-card" onclick="openModal(3)">
                 <img src="mujeres.png" alt="Mujeres">
                 <div class="obra-info">
                     <h3>Mujeres</h3>
-                    <p>Fibras mixtas y nudos complejos.</p>
+                    <p>Medidas: 60x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar</p>
                 </div>
             </div>
             <div class="obra-card" onclick="openModal(4)">
                 <img src="cine.png" alt="Cine blanco y negro">
                 <div class="obra-info">
                     <h3>Cine blanco y negro</h3>
-                    <p>Yute y algodón crudo.</p>
+                    <p>Medidas: 70x90 cm | Material: hilos 100% algodón | Posibilidad de enmarcar</p>
                 </div>
             </div>
             <div class="obra-card" onclick="openModal(5)">
                 <img src="precolombino.png" alt="Abanico Cromático">
                 <div class="obra-info">
                     <h3>Abanico Cromático</h3>
-                    <p>Composición radial.</p>
+                    <p>Medidas: 60x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar</p>
                 </div>
             </div>
             <div class="obra-card" onclick="openModal(6)">
-                <img src="telares.jpg" alt="Secuencia Lineal">
+                <img src="historiaperu.jpg" alt="Historia del Perú">
                 <div class="obra-info">
-                    <h3>Secuencia Lineal</h3>
-                    <p>Hilo de yute natural.</p>
+                    <h3>Historia del Perú</h3>
+                    <p>Medidas: 40x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar</p>
                 </div>
             </div>
         </div>
@@ -517,7 +517,7 @@
             <span class="logo-tagline">Lima, Perú</span>
         </div>
         <p>¿Tienes alguna otra duda o propuesta de colaboración?</p>
-        <a href="mailto:barbaradavid.arte@gmail.com" class="cta-button">contactar por correo</a>
+        <a href="mailto:barbaradavid.arte@gmail.com" class="cta-button">Contactar por correo</a>
     </section>
 
     <footer style="padding: 3rem; text-align: center; background: #fff; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase;">
@@ -548,7 +548,7 @@
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
-                    <a href="#contacto" class="cta-button" onclick="closeModal()">Cotizar esta obra</a>
+                    <a href="#" id="btn-cotizar" class="cta-button">Cotizar esta obra</a>
                 </div>
             </div>
         </div>
@@ -603,11 +603,10 @@
             },
             {
                 id: 6,
-                title: "Secuencia Lineal",
+                title: "Historia del Perú",
                 desc: "Serie de paneles verticales con nudos rítmicos que evocan la lluvia y el silencio.",
                 specs: "Medidas: 200x50 cm (x3 paneles) | Material: Yute",
-                imgMain: "telares.jpg",
-                imgDetail: "https://images.unsplash.com/photo-1519643381401-22c77e60520e?q=80&w=800",
+                imgMain: "historiaperu.jpg",
                 video: "https://www.youtube.com/embed/ScMzIvxBSi4"
             }
         ];
@@ -625,6 +624,7 @@
         const videoContainer = document.querySelector('.video-container');
         const detailLabel = document.querySelectorAll('.label-text')[1];
         const videoLabel = document.querySelectorAll('.label-text')[2];
+        const mQuoteBtn = document.getElementById('btn-cotizar'); // Seleccionamos el botón
 
         function openModal(id) {
             const art = artworks.find(item => item.id === id);
@@ -632,12 +632,16 @@
             if(art) {
                 mTitle.innerText = art.title;
                 mDesc.innerText = art.desc;
-                
-                // Poner las especificaciones si existen
                 mSpecs.innerText = art.specs ? art.specs : "";
-
                 mImgMain.src = art.imgMain;
                 
+                // ACTUALIZACIÓN DINÁMICA DEL LINK DE CORREO
+                // Creamos el asunto y el cuerpo del mensaje automáticamente
+                const subject = encodeURIComponent(`Consulta sobre obra: ${art.title}`);
+                const body = encodeURIComponent(`Hola Bárbara,\n\nEstoy interesado/a en la obra "${art.title}". ¿Podrías darme más información?`);
+                
+                mQuoteBtn.href = `mailto:barbaradavid.arte@gmail.com?subject=${subject}&body=${body}`;
+
                 if(art.imgDetail) {
                     mImgDetail.src = art.imgDetail;
                     mImgDetail.style.display = 'block';
@@ -674,5 +678,3 @@
     </script>
 </body>
 </html>
-
-
