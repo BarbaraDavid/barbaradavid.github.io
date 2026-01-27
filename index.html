@@ -8,7 +8,7 @@
         :root {
             --bg-color: #faf9f6;
             --text-color: #333;
-            --accent-color: #8c7355; /* El tono bronce/tierra de tu logo */
+            --accent-color: #8c7355;
             --light-grey: #e0e0e0;
         }
 
@@ -22,7 +22,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- LOGO EN CSS (Replicando la tarjeta) --- */
+        /* --- LOGO EN CSS --- */
         .logo-container {
             display: flex;
             flex-direction: column;
@@ -79,7 +79,6 @@
 
         /* --- HERO SECTION --- */
         header {
-            /* CAMBIO: Reducida la altura de 70vh a 50vh */
             height: 50vh;
             display: flex;
             flex-direction: column;
@@ -102,69 +101,64 @@
         }
 
         .img-perfil {
-width: 100%;
-    max-width: 350px;   /* <--- ANTES ERA 450px. Cámbialo a 350px (o menos si quieres) */
-    height: auto;       /* Esto asegura que la proporción se mantenga perfecta */
-    display: block;
-    margin: 0 auto;     /* Esto la mantiene centrada */
-    border-radius: 4px;
-    box-shadow: 10px 10px 0px rgba(140, 115, 85, 0.2);
-    box-shadow: 10px 10px 0px rgba(140, 115, 85, 0.2); /* Sombra decorativa */
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 4px;
+            box-shadow: 10px 10px 0px rgba(140, 115, 85, 0.2);
         }
 
         .content h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1.5rem; }
 
-#obras { 
-    padding: 5rem 10%; 
-    background: #fff; 
-}
+        /* --- OBRAS (GRID) --- */
+        #obras { 
+            padding: 5rem 10%; 
+            background: #fff; 
+        }
 
-.grid-obras {
-    display: grid;
-    /* Esto hace que las columnas se ajusten solas según el tamaño de pantalla */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 3rem;
-    margin-top: 2rem;
-}
+        .grid-obras {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
 
-.obra-card {
-    cursor: pointer; /* Muestra una manito al pasar el mouse */
-    background: transparent;
-    transition: transform 0.3s ease;
-}
+        .obra-card {
+            cursor: pointer;
+            background: transparent;
+            transition: transform 0.3s ease;
+        }
 
-/* Efecto al pasar el mouse sobre toda la tarjeta */
-.obra-card:hover {
-    transform: translateY(-5px); /* Sube un poquito la tarjeta */
-}
+        .obra-card:hover { transform: translateY(-5px); }
 
-.obra-card img { 
-width: 100%;
-    /* height: 350px;  <-- Asegúrate de que esto siga comentado o borrado */
-    aspect-ratio: 4 / 3; /* <-- CAMBIO AQUÍ: 4 unidades de ancho por 3 de alto */
-    object-fit: cover; /* Importante para que la imagen rellene el rectángulo sin deformarse */
-    border-radius: 4px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: 0.5s;
-}
+        .obra-card img { 
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.5s;
+        }
 
-.obra-card:hover img { 
-    filter: brightness(0.8); /* Oscurece un poco en vez de poner gris */
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-}
+        .obra-card:hover img { 
+            filter: brightness(0.9);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
 
-.obra-info h3 { 
-    font-family: 'Playfair Display', serif; 
-    margin-top: 1rem; 
-    font-size: 1.3rem; 
-    color: var(--text-color);
-}
+        .obra-info h3 { 
+            font-family: 'Playfair Display', serif; 
+            margin-top: 1rem; 
+            font-size: 1.3rem; 
+            color: var(--text-color);
+        }
 
-.obra-info p {
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: 0.3rem;
-}
+        .obra-info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.3rem;
+        }
 
         /* --- CONTACTO --- */
         #contacto {
@@ -185,15 +179,7 @@ width: 100%;
             text-transform: uppercase;
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            #sobre-mi { grid-template-columns: 1fr; }
-            .hero-logo .logo-name { font-size: 2.5rem; }
-            nav { flex-direction: column; gap: 1rem; }
-            nav .nav-links a { margin: 0 10px; }
-        }
-
-        /* --- MODAL (POP UP) --- */
+        /* --- NUEVO ESTILO MODAL (Rich Content) --- */
         .modal {
             display: none; 
             position: fixed; 
@@ -202,94 +188,110 @@ width: 100%;
             top: 0;
             width: 100%; 
             height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0,0,0,0.8); 
+            overflow: auto; /* Permite scroll vertical */
+            background-color: rgba(255, 255, 255, 0.98); 
             backdrop-filter: blur(5px);
         }
 
         .modal-content {
-            background-color: #fefefe;
+            background-color: transparent;
             margin: 5% auto; 
-            padding: 0;
-            border: 1px solid #888;
-            width: 80%; 
-            max-width: 900px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            padding: 20px;
+            width: 90%; 
+            max-width: 800px;
             position: relative;
+            animation: fadeIn 0.4s ease;
         }
 
         .close-btn {
-            color: #aaa;
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 28px;
-            font-weight: bold;
+            color: #333;
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            font-weight: 100;
             cursor: pointer;
-            z-index: 10;
+            z-index: 2001;
+            transition: transform 0.2s;
         }
 
-        .close-btn:hover,
-        .close-btn:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+        .close-btn:hover { transform: rotate(90deg); color: #000; }
 
-        .modal-img-container {
-            background-color: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            height: 100%;
-            /* CAMBIO: Reducida altura mínima del modal de 400px a 300px */
-            min-height: 300px;
-        }
-
-        .modal-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .modal-details {
+        /* Estructura interna del modal */
+        .modal-body {
+            background: #fff;
             padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+
+        .modal-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-desc {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .modal-media {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            gap: 25px;
         }
 
-        .modal-details h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
+        .modal-media img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            display: block;
         }
 
-        .modal-details p {
-            font-size: 1rem;
-            color: #555;
-            margin-bottom: 1rem;
+        .label-text {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+            margin-bottom: 5px;
+            margin-top: 10px;
         }
 
+        /* Contenedor responsivo para video Youtube */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 ratio */
+            height: 0;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .modal-content {
-                grid-template-columns: 1fr;
-                width: 90%;
-                margin: 10% auto;
-            }
-            .modal-img {
-height: auto;          /* Deja que la altura se ajuste sola */
-    max-height: 400px;     /* Ponemos un límite para que no sea ETERNA en fotos verticales */
-    width: 100%;           /* Ocupa todo el ancho */
-    object-fit: contain;   /* CLAVE: Esto asegura que NUNCA se recorte, muestra la foto entera */
-    background-color: #f0f0f0; /* Un fondo gris suave por si la foto es muy angosta */
-            }
-            .modal-details {
-                padding: 20px;
-            }
+            #sobre-mi { grid-template-columns: 1fr; }
+            .hero-logo .logo-name { font-size: 2.5rem; }
+            nav { flex-direction: column; gap: 1rem; }
+            nav .nav-links a { margin: 0 10px; }
+            .modal-content { width: 95%; margin: 15% auto; }
+            .modal-body { padding: 20px; }
         }
     </style>
 </head>
@@ -323,180 +325,231 @@ height: auto;          /* Deja que la altura se ajuste sola */
     </header>
 
     <section id="sobre-mi">
-<img src="BarbaraDavid.jpg" class="img-perfil" alt="Retrato de Bárbara">
-<div class="content">
+        <img src="BarbaraDavid.jpg" class="img-perfil" alt="Retrato de Bárbara">
+        <div class="content">
             <h2>Hilos con historia</h2>
-            <p>Hola, soy Bárbara. Mi pasión por los Quipus tradicionales nace de una profunda curiosidad por entender cómo las culturas precolombinas codificaban su mundo. Lo que para muchos es solo un sistema contable inca, para mí es un lenguaje lleno de sofisticación, diseño y memoria.
-</p>
-            <br>Como artista emergente, me dedico a desenredar esta historia. Mi trabajo busca rescatar la estética y la ingeniería del Quipu tradicional para traerlo a nuestros espacios contemporáneos. No se trata solo de replicar el pasado, sino de dialogar con él: usar sus texturas, sus ritmos y sus silencios para crear piezas que hablen de nuestra identidad hoy.</p>
-           
-            <br>En este espacio, comparto mi proceso de exploración y creación. Gracias por estar aquí y ser parte de este redescubrimiento.</p>
-            
+            <p>Hola, soy Bárbara. Mi pasión por los Quipus tradicionales nace de una profunda curiosidad por entender cómo las culturas precolombinas codificaban su mundo. Lo que para muchos es solo un sistema contable inca, para mí es un lenguaje lleno de sofisticación, diseño y memoria.</p>
+            <br>
+            <p>Como artista emergente, me dedico a desenredar esta historia. Mi trabajo busca rescatar la estética y la ingeniería del Quipu tradicional para traerlo a nuestros espacios contemporáneos.</p>
         </div>
     </section>
 
-<section id="obras">
-    <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 2rem;">
-        Colección 
-    </h2>
-    
-    <div class="grid-obras">
+    <section id="obras">
+        <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 2rem;">
+            Colección 
+        </h2>
         
-        <div class="obra-card" 
-             onclick="openModal('Planeta tierra', 'Algodón Pima y tintes naturales. Evoca la serenidad andina.', 'planeta1.png')">
-            <img src="planeta1.png" alt="Planeta tierra">
-            <div class="obra-info">
-                <h3>Planeta tierra</h3>
-                <p>Medidas:</p>
+        <div class="grid-obras">
+            
+            <div class="obra-card" onclick="openModal(1)">
+                <img src="planeta1.png" alt="Planeta tierra">
+                <div class="obra-info">
+                    <h3>Planeta tierra</h3>
+                    <p>Algodón Pima y tintes naturales.</p>
+                </div>
             </div>
-        </div>
 
-        <div class="obra-card" 
-             onclick="openModal('planeta tierra 2', 'Lana de alpaca sobre bastidor. Texturas que conectan con raíces.', 'planeta2.jpeg')">
-            <img src="planeta2.jpeg" alt="planeta tierra 2">
-            <div class="obra-info">
-                <h3>Planeta tierra 2</h3>
-                <p>Medidas: </p>
+            <div class="obra-card" onclick="openModal(2)">
+                <img src="planeta2.jpeg" alt="Planeta tierra 2">
+                <div class="obra-info">
+                    <h3>Planeta tierra 2</h3>
+                    <p>Lana de alpaca sobre bastidor.</p>
+                </div>
             </div>
-        </div>
 
-        <div class="obra-card" 
-             onclick="openModal('mujeres latinoamericanas', 'Fibras mixtas y nudos complejos sobre lino.', 'mujeres.png')">
-            <img src="mujeres.png" alt="Mujeres">
-            <div class="obra-info">
-                <h3>Mujeres</h3>
-                <p>Medidas:</p>
+            <div class="obra-card" onclick="openModal(3)">
+                <img src="mujeres.png" alt="Mujeres">
+                <div class="obra-info">
+                    <h3>Mujeres</h3>
+                    <p>Fibras mixtas y nudos complejos.</p>
+                </div>
             </div>
-        </div>
 
-        <div class="obra-card" 
-             onclick="openModal('Cine blanco y negro', 'Yute y algodón crudo. Homenaje a la tierra.', 'cine.png')">
-            <img src="cine.png" alt="Cine blanco y negro">
-            <div class="obra-info">
-                <h3>Cine blanco y negro</h3>
-                <p>Medidas:</p>
+            <div class="obra-card" onclick="openModal(4)">
+                <img src="cine.png" alt="Cine blanco y negro">
+                <div class="obra-info">
+                    <h3>Cine blanco y negro</h3>
+                    <p>Yute y algodón crudo.</p>
+                </div>
             </div>
-        </div>
-<div class="obra-card" 
-             onclick="openModal('Culturas precolombinas peruanas', 'Composición radial que explora la transición de color desde el crudo hasta el borgoña intenso.', 'precolombino.png')">
-            <img src="precolombino.png" alt="Culturas precolombinas peruanas">
-            <div class="Culturas precolombinas peruanas">
-                <h3>Abanico Cromático</h3>
-                <p>Medidas:</p>
-            </div>
-        </div>
 
-        <div class="obra-card" 
-             onclick="openModal('Secuencia Lineal', 'Serie de paneles verticales con nudos rítmicos que evocan la lluvia y el silencio.', 'telares.jpg')">
-            <img src="telares.jpg" alt="Secuencia Lineal">
-            <div class="obra-info">
-                <h3>Secuencia Lineal</h3>
-                <p>Hilo de yute natural</p>
+            <div class="obra-card" onclick="openModal(5)">
+                <img src="precolombino.png" alt="Abanico Cromático">
+                <div class="obra-info">
+                    <h3>Abanico Cromático</h3>
+                    <p>Composición radial.</p>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
 
-<section id="contacto">
-    <div class="logo-container" style="margin-bottom: 2rem;">
-        <h2 class="logo-name">Bárbara David</h2>
-        <span class="logo-tagline">Lima, Perú</span>
-    </div>
-    <p>¿Te interesa una pieza o te gustaría una pieza personalizada para tu hogar?</p>
-    
-    <a href="mailto:barbaradavid.arte@gmail.com?subject=Consulta%20sobre%20obra" class="cta-button">Consultar por correo</a>
-</section>
+            <div class="obra-card" onclick="openModal(6)">
+                <img src="telares.jpg" alt="Secuencia Lineal">
+                <div class="obra-info">
+                    <h3>Secuencia Lineal</h3>
+                    <p>Hilo de yute natural.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="logo-container" style="margin-bottom: 2rem;">
+            <h2 class="logo-name">Bárbara David</h2>
+            <span class="logo-tagline">Lima, Perú</span>
+        </div>
+        <p>¿Te interesa una pieza o te gustaría una pieza personalizada para tu hogar?</p>
+        <a href="mailto:barbaradavid.arte@gmail.com?subject=Consulta%20sobre%20obra" class="cta-button">Consultar por correo</a>
+    </section>
 
     <footer style="padding: 3rem; text-align: center; background: #fff; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase;">
         &copy; 2026 Bárbara David | Hecho a mano en Lima
     </footer>
 
-    <!-- MODAL STRUCTURE -->
-    <div id="modal-obra" class="modal">
+    <div id="projectModal" class="modal">
+        <span class="close-btn">&times;</span>
         <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <div class="modal-img-container">
-                <img id="modal-img" class="modal-img" src="" alt="Detalle de obra">
-            </div>
-            <div class="modal-details">
-                <h2 id="modal-title">Título de la Obra</h2>
-                <p id="modal-desc">Descripción detallada de la obra.</p>
-                <a href="#contacto" class="cta-button" onclick="closeModal()">Me interesa</a>
+            <div class="modal-body">
+                <div class="modal-header">
+                    <h2 id="modal-title">Título</h2>
+                    <p id="modal-desc" class="modal-desc">Descripción...</p>
+                </div>
+                
+                <div class="modal-media">
+                    <div class="label-text">Vista General</div>
+                    <img id="modal-img-main" src="" alt="Vista Principal">
+                    
+                    <div class="label-text">Detalle de Textura</div>
+                    <img id="modal-img-detail" src="" alt="Detalle">
+                    
+                    <div class="label-text">Proceso / Video</div>
+                    <div class="video-container">
+                        <iframe id="modal-video" src="" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="#contacto" class="cta-button" onclick="closeModal()">Me interesa esta obra</a>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Obtener elementos del modal
-        var modal = document.getElementById("modal-obra");
-        var modalImg = document.getElementById("modal-img");
-        var modalTitle = document.getElementById("modal-title");
-        var modalDesc = document.getElementById("modal-desc");
-        var closeBtn = document.getElementsByClassName("close-btn")[0];
+        // --- BASE DE DATOS DE TUS OBRAS ---
+        // EDITA AQUÍ LOS LINKS DE VIDEOS E IMAGENES DE DETALLE
+        const artworks = [
+            {
+                id: 1,
+                title: "Planeta tierra",
+                desc: "Algodón Pima y tintes naturales. Evoca la serenidad andina mediante el uso de nudos planos que simulan la topografía.",
+                imgMain: "planeta1.png",
+                imgDetail: "https://images.unsplash.com/photo-1617376722304-7a134a66395b?q=80&w=800", // Pon aquí tu foto de detalle
+                video: "https://www.youtube.com/embed/dQw4w9WgXcQ" // Pon aquí tu link de Youtube (embed)
+            },
+            {
+                id: 2,
+                title: "Planeta tierra 2",
+                desc: "Lana de alpaca sobre bastidor. Una exploración más profunda de las texturas que conectan con nuestras raíces.",
+                imgMain: "planeta2.jpeg",
+                imgDetail: "https://images.unsplash.com/photo-1594040226829-7f251ab46d80?q=80&w=800",
+                video: "" // Si no hay video, dejar comillas vacías
+            },
+            {
+                id: 3,
+                title: "Mujeres",
+                desc: "Fibras mixtas y nudos complejos sobre lino. Un homenaje a la fuerza femenina en la historia textil.",
+                imgMain: "mujeres.png",
+                imgDetail: "https://images.unsplash.com/photo-1605218427306-0220206124e5?q=80&w=800",
+                video: "https://www.youtube.com/embed/lxO-6rlihSg"
+            },
+            {
+                id: 4,
+                title: "Cine blanco y negro",
+                desc: "Yute y algodón crudo. Un juego de contrastes inspirado en la fotografía clásica.",
+                imgMain: "cine.png",
+                imgDetail: "https://images.unsplash.com/photo-1544161513-0179fe746d32?q=80&w=800",
+                video: ""
+            },
+            {
+                id: 5,
+                title: "Abanico Cromático",
+                desc: "Composición radial que explora la transición de color desde el crudo hasta el borgoña intenso.",
+                imgMain: "precolombino.png",
+                imgDetail: "https://images.unsplash.com/photo-1614607242094-b1b2cf769ff3?q=80&w=800",
+                video: ""
+            },
+            {
+                id: 6,
+                title: "Secuencia Lineal",
+                desc: "Serie de paneles verticales con nudos rítmicos que evocan la lluvia y el silencio. Hilo de yute natural.",
+                imgMain: "telares.jpg",
+                imgDetail: "https://images.unsplash.com/photo-1519643381401-22c77e60520e?q=80&w=800",
+                video: "https://www.youtube.com/embed/ScMzIvxBSi4"
+            }
+        ];
 
-        // Función para abrir el modal con datos dinámicos
-        function openModal(title, desc, imgSrc) {
-            modal.style.display = "block";
-            modalImg.src = imgSrc;
-            modalTitle.innerText = title;
-            modalDesc.innerText = desc;
-        }
+        // --- LÓGICA DEL MODAL ---
+        const modal = document.getElementById('projectModal');
+        const closeBtn = document.querySelector('.close-btn');
+        
+        // Elementos internos
+        const mTitle = document.getElementById('modal-title');
+        const mDesc = document.getElementById('modal-desc');
+        const mImgMain = document.getElementById('modal-img-main');
+        const mImgDetail = document.getElementById('modal-img-detail');
+        const mVideo = document.getElementById('modal-video');
+        const videoContainer = document.querySelector('.video-container');
+        const detailLabel = document.querySelectorAll('.label-text')[1]; // Label de detalle
 
-        // Función para cerrar el modal
-        function closeModal() {
-            modal.style.display = "none";
-        }
+        function openModal(id) {
+            // 1. Buscar la obra en la base de datos
+            const art = artworks.find(item => item.id === id);
+            
+            if(art) {
+                // 2. Llenar textos
+                mTitle.innerText = art.title;
+                mDesc.innerText = art.desc;
+                
+                // 3. Llenar imágenes
+                mImgMain.src = art.imgMain;
+                
+                // Manejo de imagen detalle (ocultar si no existe)
+                if(art.imgDetail) {
+                    mImgDetail.src = art.imgDetail;
+                    mImgDetail.style.display = 'block';
+                    detailLabel.style.display = 'block';
+                } else {
+                    mImgDetail.style.display = 'none';
+                    detailLabel.style.display = 'none';
+                }
 
-        // Evento para cerrar al hacer clic en la X
-        closeBtn.onclick = function() {
-            closeModal();
-        }
+                // 4. Manejo del Video (ocultar si no existe)
+                if(art.video && art.video !== "") {
+                    mVideo.src = art.video;
+                    videoContainer.style.display = 'block';
+                    document.querySelectorAll('.label-text')[2].style.display = 'block';
+                } else {
+                    mVideo.src = "";
+                    videoContainer.style.display = 'none';
+                    document.querySelectorAll('.label-text')[2].style.display = 'none';
+                }
 
-        // Evento para cerrar al hacer clic fuera del modal
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
+                // 5. Mostrar modal
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Bloquear scroll fondo
             }
         }
-    </script>
 
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaurar scroll
+            mVideo.src = ""; // Detener video
+        }
+
+        // Eventos
+        closeBtn.onclick = closeModal;
+        window.onclick = (e) => { if (e.target == modal) closeModal(); };
+
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
