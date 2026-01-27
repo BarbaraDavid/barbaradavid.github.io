@@ -341,7 +341,6 @@
             margin-top: 10px;
         }
         
-        /* ESTILO PARA LAS ESPECIFICACIONES TÉCNICAS */
         .specs-text {
             font-size: 0.95rem;
             color: #444;
@@ -426,15 +425,15 @@
     </section>
 
     <section id="obras">
-        <h2 class="section-title">Colección</h2>
-        <p class="section-subtitle">Piezas únicas y hechas a mano. Más detalles dando click en la imagen.</p>
+        <h2 class="section-title">Colección Reciente</h2>
+        <p class="section-subtitle">Piezas únicas disponibles y archivo de obras vendidas.</p>
         
         <div class="grid-obras">
             <div class="obra-card" onclick="openModal(1)">
                 <img src="planeta1.png" alt="Planeta tierra">
                 <div class="obra-info">
                     <h3>Planeta tierra</h3>
-                    <p>Medidas: 40x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar</p>
+                    <p>Algodón Pima y tintes naturales.</p>
                 </div>
             </div>
             <div class="obra-card" onclick="openModal(2)">
@@ -543,29 +542,29 @@
                     
                     <img id="modal-img-detail" src="" alt="Detalle">
                     
-                    <div class="label-text">Video explicativo</div>
+                    <div class="label-text">Proceso / Video</div>
                     <div class="video-container">
                         <iframe id="modal-video" src="" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
-                    <a href="#pedido" class="cta-button" onclick="closeModal()">Cotizar esta obra</a>
+                    <a href="#contacto" class="cta-button" onclick="closeModal()">Cotizar esta obra</a>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // --- BASE DE DATOS OBRAS (CON NUEVO CAMPO: specs) ---
-        // Puedes editar el texto dentro de "specs" con las medidas y materiales
+        // --- BASE DE DATOS OBRAS ---
         const artworks = [
             {
                 id: 1,
                 title: "Planeta tierra",
-                desc: "Este quipu tiene una cuerda principal y 57 cuerdas subsidiarias. Cada cuerda subsidiaria tiene un significado y un color: verde, si el acontecimiento ha sido positivo para el planeta, marrón si fue negativo.",
-                specs: "Medidas: 40x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar", 
-                imgMain: "espacioplaneta1.png",
-                video: "videoplaneta1.mp4" 
+                desc: "Algodón Pima y tintes naturales. Evoca la serenidad andina mediante el uso de nudos planos que simulan la topografía.",
+                specs: "Medidas: 150x100 cm | Material: Algodón Pima", 
+                imgMain: "planeta1.png",
+                imgDetail: "https://images.unsplash.com/photo-1617376722304-7a134a66395b?q=80&w=800", 
+                video: "https://www.youtube.com/embed/dQw4w9WgXcQ" 
             },
             {
                 id: 2,
@@ -620,7 +619,7 @@
         
         const mTitle = document.getElementById('modal-title');
         const mDesc = document.getElementById('modal-desc');
-        const mSpecs = document.getElementById('modal-specs'); // NUEVO ELEMENTO JS
+        const mSpecs = document.getElementById('modal-specs');
         const mImgMain = document.getElementById('modal-img-main');
         const mImgDetail = document.getElementById('modal-img-detail');
         const mVideo = document.getElementById('modal-video');
@@ -635,7 +634,7 @@
                 mTitle.innerText = art.title;
                 mDesc.innerText = art.desc;
                 
-                // NUEVO: Poner las especificaciones si existen
+                // Poner las especificaciones si existen
                 mSpecs.innerText = art.specs ? art.specs : "";
 
                 mImgMain.src = art.imgMain;
@@ -676,6 +675,3 @@
     </script>
 </body>
 </html>
-
-
-
