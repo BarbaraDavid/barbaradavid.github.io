@@ -179,7 +179,7 @@
             margin-top: 0.3rem;
         }
 
-        /* --- NUEVO FORMULARIO PERSONALIZADO --- */
+        /* --- FORMULARIO PERSONALIZADO --- */
         #pedido {
             background-color: #f7f6f2;
         }
@@ -340,6 +340,17 @@
             margin-bottom: 5px;
             margin-top: 10px;
         }
+        
+        /* ESTILO PARA LAS ESPECIFICACIONES TÉCNICAS */
+        .specs-text {
+            font-size: 0.95rem;
+            color: #444;
+            font-weight: 500;
+            background: #f4f4f4;
+            padding: 10px;
+            border-left: 3px solid var(--accent-color);
+            margin-bottom: 10px;
+        }
 
         .video-container {
             position: relative;
@@ -455,9 +466,9 @@
                 </div>
             </div>
             <div class="obra-card" onclick="openModal(6)">
-                <img src="historiaperu.jpg" alt="Historia del Perú">
+                <img src="telares.jpg" alt="Secuencia Lineal">
                 <div class="obra-info">
-                    <h3>Historia del Perú</h3>
+                    <h3>Secuencia Lineal</h3>
                     <p>Hilo de yute natural.</p>
                 </div>
             </div>
@@ -470,17 +481,14 @@
 
         <div class="form-container">
             <form action="https://formspree.io/f/mwvozbko" method="POST">
-                
                 <div class="form-group">
                     <label>Nombre Completo</label>
                     <input type="text" name="nombre" required placeholder="Ej: María Pérez">
                 </div>
-                
                 <div class="form-group">
                     <label>Correo Electrónico</label>
                     <input type="email" name="email" required placeholder="tucorreo@ejemplo.com">
                 </div>
-
                 <div class="form-group">
                     <label>Tipo de Obra</label>
                     <select name="tipo_obra">
@@ -491,17 +499,14 @@
                         <option value="Otro">Otro (Especificar en mensaje)</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label>Dimensiones Aproximadas</label>
                     <input type="text" name="dimensiones" placeholder="Ej: 150cm x 80cm">
                 </div>
-
                 <div class="form-group">
                     <label>Cuéntame tu idea</label>
                     <textarea name="mensaje" rows="5" placeholder="Describe los colores, el estilo..."></textarea>
                 </div>
-
                 <button type="submit" class="btn-submit">Enviar Solicitud</button>
             </form>
         </div>
@@ -532,10 +537,13 @@
                     <div class="label-text">Vista General</div>
                     <img id="modal-img-main" src="" alt="Vista Principal">
                     
-                    <div class="label-text">Detalle</div>
+                    <div class="label-text">Detalle de Textura</div>
+                    
+                    <p id="modal-specs" class="specs-text"></p>
+                    
                     <img id="modal-img-detail" src="" alt="Detalle">
                     
-                    <div class="label-text">Video explicativo</div>
+                    <div class="label-text">Proceso / Video</div>
                     <div class="video-container">
                         <iframe id="modal-video" src="" frameborder="0" allowfullscreen></iframe>
                     </div>
@@ -548,20 +556,23 @@
     </div>
 
     <script>
-        // --- BASE DE DATOS OBRAS ---
+        // --- BASE DE DATOS OBRAS (CON NUEVO CAMPO: specs) ---
+        // Puedes editar el texto dentro de "specs" con las medidas y materiales
         const artworks = [
             {
                 id: 1,
                 title: "Planeta tierra",
-                desc: "Este quipu tiene una cuerda principal y 57 cuerdas subsidiarias. Cada cuerda subsidiaria tiene un significado y un color: verde, si el acontecimiento ha sido positivo para el planeta, marrón si fue negativo.",
-                imgMain: "espacioplaneta1.png",
-                imgDetail: "Esta obra mide 50 cm de alto por 70 cm de ancho. Hilos 100% algodón. Se puede enmcarcar.", 
-                video: "videoplaneta1.mp4" 
+                desc: "Algodón Pima y tintes naturales. Evoca la serenidad andina mediante el uso de nudos planos que simulan la topografía.",
+                specs: "Medidas: 150x100 cm | Material: Algodón Pima", 
+                imgMain: "planeta1.png",
+                imgDetail: "https://images.unsplash.com/photo-1617376722304-7a134a66395b?q=80&w=800", 
+                video: "https://www.youtube.com/embed/dQw4w9WgXcQ" 
             },
             {
                 id: 2,
                 title: "Planeta tierra 2",
                 desc: "Lana de alpaca sobre bastidor. Una exploración más profunda de las texturas que conectan con nuestras raíces.",
+                specs: "Medidas: 200x80 cm | Material: Lana de Alpaca",
                 imgMain: "planeta2.jpeg",
                 imgDetail: "https://images.unsplash.com/photo-1594040226829-7f251ab46d80?q=80&w=800",
                 video: "" 
@@ -570,6 +581,7 @@
                 id: 3,
                 title: "Mujeres",
                 desc: "Fibras mixtas y nudos complejos sobre lino. Un homenaje a la fuerza femenina en la historia textil.",
+                specs: "Medidas: 120x120 cm | Material: Lino y Algodón",
                 imgMain: "mujeres.png",
                 imgDetail: "https://images.unsplash.com/photo-1605218427306-0220206124e5?q=80&w=800",
                 video: "https://www.youtube.com/embed/lxO-6rlihSg"
@@ -578,6 +590,7 @@
                 id: 4,
                 title: "Cine blanco y negro",
                 desc: "Yute y algodón crudo. Un juego de contrastes inspirado en la fotografía clásica.",
+                specs: "Medidas: 90x60 cm | Material: Yute y Algodón",
                 imgMain: "cine.png",
                 imgDetail: "https://images.unsplash.com/photo-1544161513-0179fe746d32?q=80&w=800",
                 video: ""
@@ -586,26 +599,29 @@
                 id: 5,
                 title: "Abanico Cromático",
                 desc: "Composición radial que explora la transición de color desde el crudo hasta el borgoña intenso.",
+                specs: "Diámetro: 110 cm | Material: Lana teñida a mano",
                 imgMain: "precolombino.png",
                 imgDetail: "https://images.unsplash.com/photo-1614607242094-b1b2cf769ff3?q=80&w=800",
                 video: ""
             },
             {
                 id: 6,
-                title: "Historia del Perú",
-                desc: "Serie de paneles verticales con nudos rítmicos que evocan la lluvia y el silencio. Hilo de yute natural.",
-                imgMain: "historiaperu.jpg",
+                title: "Secuencia Lineal",
+                desc: "Serie de paneles verticales con nudos rítmicos que evocan la lluvia y el silencio.",
+                specs: "Medidas: 200x50 cm (x3 paneles) | Material: Yute",
+                imgMain: "telares.jpg",
                 imgDetail: "https://images.unsplash.com/photo-1519643381401-22c77e60520e?q=80&w=800",
                 video: "https://www.youtube.com/embed/ScMzIvxBSi4"
             }
         ];
 
-        // --- LÓGICA DEL MODAL (YA BORRAMOS handleFormSubmit) ---
+        // --- LÓGICA DEL MODAL ---
         const modal = document.getElementById('projectModal');
         const closeBtn = document.querySelector('.close-btn');
         
         const mTitle = document.getElementById('modal-title');
         const mDesc = document.getElementById('modal-desc');
+        const mSpecs = document.getElementById('modal-specs'); // NUEVO ELEMENTO JS
         const mImgMain = document.getElementById('modal-img-main');
         const mImgDetail = document.getElementById('modal-img-detail');
         const mVideo = document.getElementById('modal-video');
@@ -619,6 +635,10 @@
             if(art) {
                 mTitle.innerText = art.title;
                 mDesc.innerText = art.desc;
+                
+                // NUEVO: Poner las especificaciones si existen
+                mSpecs.innerText = art.specs ? art.specs : "";
+
                 mImgMain.src = art.imgMain;
                 
                 if(art.imgDetail) {
@@ -657,8 +677,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
