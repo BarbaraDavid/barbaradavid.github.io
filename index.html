@@ -10,6 +10,7 @@
             --text-color: #333;
             --accent-color: #8c7355;
             --light-grey: #e0e0e0;
+            --input-bg: #ffffff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -75,7 +76,10 @@
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-weight: 500;
         }
+
+        nav .nav-links a:hover { color: var(--accent-color); }
 
         /* --- HERO SECTION --- */
         header {
@@ -91,9 +95,27 @@
         .hero-logo .logo-tagline { font-size: 1.2rem; margin-top: 10px; }
         .hero-logo .knot-icon { width: 120px; height: 60px; margin-bottom: 15px; }
 
+        /* --- SECCIONES GENERALES --- */
+        section { padding: 6rem 10%; }
+        
+        .section-title {
+            text-align: center; 
+            font-family: 'Playfair Display'; 
+            font-size: 2.5rem; 
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #666;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
         /* --- SOBRE MÍ --- */
         #sobre-mi {
-            padding: 8rem 10%;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
@@ -113,10 +135,7 @@
         .content h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1.5rem; }
 
         /* --- OBRAS (GRID) --- */
-        #obras { 
-            padding: 5rem 10%; 
-            background: #fff; 
-        }
+        #obras { background: #fff; }
 
         .grid-obras {
             display: grid;
@@ -143,8 +162,8 @@
         }
 
         .obra-card:hover img { 
-            filter: brightness(0.9);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            filter: brightness(0.95);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         .obra-info h3 { 
@@ -160,11 +179,72 @@
             margin-top: 0.3rem;
         }
 
+        /* --- NUEVO FORMULARIO PERSONALIZADO --- */
+        #pedido {
+            background-color: #f7f6f2;
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border: 1px solid #eee;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+        }
+
+        .form-group { margin-bottom: 25px; }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: var(--input-bg);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            border-color: var(--accent-color);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover { background-color: var(--accent-color); }
+
         /* --- CONTACTO --- */
         #contacto {
-            padding: 8rem 10%;
+            padding: 6rem 10%;
             text-align: center;
-            background-color: #f2f0eb;
+            background-color: #fff;
+            border-top: 1px solid #eee;
         }
 
         .cta-button {
@@ -179,7 +259,7 @@
             text-transform: uppercase;
         }
 
-        /* --- NUEVO ESTILO MODAL (Rich Content) --- */
+        /* --- ESTILOS MODAL --- */
         .modal {
             display: none; 
             position: fixed; 
@@ -188,7 +268,7 @@
             top: 0;
             width: 100%; 
             height: 100%; 
-            overflow: auto; /* Permite scroll vertical */
+            overflow: auto; 
             background-color: rgba(255, 255, 255, 0.98); 
             backdrop-filter: blur(5px);
         }
@@ -217,7 +297,6 @@
 
         .close-btn:hover { transform: rotate(90deg); color: #000; }
 
-        /* Estructura interna del modal */
         .modal-body {
             background: #fff;
             padding: 40px;
@@ -262,10 +341,9 @@
             margin-top: 10px;
         }
 
-        /* Contenedor responsivo para video Youtube */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             background: #f0f0f0;
@@ -292,6 +370,7 @@
             nav .nav-links a { margin: 0 10px; }
             .modal-content { width: 95%; margin: 15% auto; }
             .modal-body { padding: 20px; }
+            .form-container { padding: 20px; }
         }
     </style>
 </head>
@@ -308,7 +387,8 @@
         </div>
         <div class="nav-links">
             <a href="#sobre-mi">Bio</a>
-            <a href="#obras">Obras</a>
+            <a href="#obras">Colección</a>
+            <a href="#pedido" style="color: var(--accent-color); font-weight: 700;">A Medida</a>
             <a href="#contacto">Contacto</a>
         </div>
     </nav>
@@ -335,12 +415,10 @@
     </section>
 
     <section id="obras">
-        <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 2rem;">
-            Colección 
-        </h2>
+        <h2 class="section-title">Colección Reciente</h2>
+        <p class="section-subtitle">Piezas únicas disponibles y archivo de obras vendidas.</p>
         
         <div class="grid-obras">
-            
             <div class="obra-card" onclick="openModal(1)">
                 <img src="planeta1.png" alt="Planeta tierra">
                 <div class="obra-info">
@@ -348,7 +426,6 @@
                     <p>Algodón Pima y tintes naturales.</p>
                 </div>
             </div>
-
             <div class="obra-card" onclick="openModal(2)">
                 <img src="planeta2.jpeg" alt="Planeta tierra 2">
                 <div class="obra-info">
@@ -356,7 +433,6 @@
                     <p>Lana de alpaca sobre bastidor.</p>
                 </div>
             </div>
-
             <div class="obra-card" onclick="openModal(3)">
                 <img src="mujeres.png" alt="Mujeres">
                 <div class="obra-info">
@@ -364,7 +440,6 @@
                     <p>Fibras mixtas y nudos complejos.</p>
                 </div>
             </div>
-
             <div class="obra-card" onclick="openModal(4)">
                 <img src="cine.png" alt="Cine blanco y negro">
                 <div class="obra-info">
@@ -372,7 +447,6 @@
                     <p>Yute y algodón crudo.</p>
                 </div>
             </div>
-
             <div class="obra-card" onclick="openModal(5)">
                 <img src="precolombino.png" alt="Abanico Cromático">
                 <div class="obra-info">
@@ -380,7 +454,6 @@
                     <p>Composición radial.</p>
                 </div>
             </div>
-
             <div class="obra-card" onclick="openModal(6)">
                 <img src="telares.jpg" alt="Secuencia Lineal">
                 <div class="obra-info">
@@ -388,7 +461,48 @@
                     <p>Hilo de yute natural.</p>
                 </div>
             </div>
+        </div>
+    </section>
 
+    <section id="pedido">
+        <h2 class="section-title">Tu Quipu Personalizado</h2>
+        <p class="section-subtitle">Diseñemos juntos una pieza única para tu hogar o proyecto arquitectónico.</p>
+
+        <div class="form-container">
+            <form id="customForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="f-name" required placeholder="Ej: María Pérez">
+                </div>
+                
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="f-email" required placeholder="tucorreo@ejemplo.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Tipo de Obra</label>
+                    <select id="f-type">
+                        <option value="Quipu Decorativo de Pared">Quipu Decorativo de Pared</option>
+                        <option value="Tapiz Gran Formato">Tapiz de Gran Formato</option>
+                        <option value="Escultura Colgante">Escultura Colgante 360°</option>
+                        <option value="Instalación Corporativa">Instalación para Oficina/Hotel</option>
+                        <option value="Otro">Otro (Especificar en mensaje)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Dimensiones Aproximadas (Alto x Ancho)</label>
+                    <input type="text" id="f-dims" placeholder="Ej: 150cm x 80cm">
+                </div>
+
+                <div class="form-group">
+                    <label>Cuéntame tu idea</label>
+                    <textarea id="f-msg" rows="5" placeholder="Describe los colores, el estilo de tu espacio o qué te inspira..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar Solicitud</button>
+            </form>
         </div>
     </section>
 
@@ -397,8 +511,8 @@
             <h2 class="logo-name">Bárbara David</h2>
             <span class="logo-tagline">Lima, Perú</span>
         </div>
-        <p>¿Te interesa una pieza o te gustaría una pieza personalizada para tu hogar?</p>
-        <a href="mailto:barbaradavid.arte@gmail.com?subject=Consulta%20sobre%20obra" class="cta-button">Consultar por correo</a>
+        <p>¿Tienes alguna otra duda o propuesta de colaboración?</p>
+        <a href="mailto:barbaradavid.arte@gmail.com" class="cta-button">Escribir directamente</a>
     </section>
 
     <footer style="padding: 3rem; text-align: center; background: #fff; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase;">
@@ -413,7 +527,6 @@
                     <h2 id="modal-title">Título</h2>
                     <p id="modal-desc" class="modal-desc">Descripción...</p>
                 </div>
-                
                 <div class="modal-media">
                     <div class="label-text">Vista General</div>
                     <img id="modal-img-main" src="" alt="Vista Principal">
@@ -426,25 +539,23 @@
                         <iframe id="modal-video" src="" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
-                
                 <div style="text-align: center; margin-top: 30px;">
-                    <a href="#contacto" class="cta-button" onclick="closeModal()">Me interesa esta obra</a>
+                    <a href="#pedido" class="cta-button" onclick="closeModal()">Cotizar esta obra</a>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // --- BASE DE DATOS DE TUS OBRAS ---
-        // EDITA AQUÍ LOS LINKS DE VIDEOS E IMAGENES DE DETALLE
+        // --- BASE DE DATOS OBRAS ---
         const artworks = [
             {
                 id: 1,
                 title: "Planeta tierra",
                 desc: "Algodón Pima y tintes naturales. Evoca la serenidad andina mediante el uso de nudos planos que simulan la topografía.",
                 imgMain: "planeta1.png",
-                imgDetail: "https://images.unsplash.com/photo-1617376722304-7a134a66395b?q=80&w=800", // Pon aquí tu foto de detalle
-                video: "https://www.youtube.com/embed/dQw4w9WgXcQ" // Pon aquí tu link de Youtube (embed)
+                imgDetail: "https://images.unsplash.com/photo-1617376722304-7a134a66395b?q=80&w=800", 
+                video: "https://www.youtube.com/embed/dQw4w9WgXcQ" 
             },
             {
                 id: 2,
@@ -452,7 +563,7 @@
                 desc: "Lana de alpaca sobre bastidor. Una exploración más profunda de las texturas que conectan con nuestras raíces.",
                 imgMain: "planeta2.jpeg",
                 imgDetail: "https://images.unsplash.com/photo-1594040226829-7f251ab46d80?q=80&w=800",
-                video: "" // Si no hay video, dejar comillas vacías
+                video: "" 
             },
             {
                 id: 3,
@@ -488,32 +599,45 @@
             }
         ];
 
+        // --- LÓGICA DEL FORMULARIO ---
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Evita que la página se recargue
+
+            // 1. Capturar datos
+            const name = document.getElementById('f-name').value;
+            const type = document.getElementById('f-type').value;
+            const dims = document.getElementById('f-dims').value;
+            const msg = document.getElementById('f-msg').value;
+
+            // 2. Crear cuerpo del correo
+            const subject = encodeURIComponent(`Nuevo Pedido de Quipu: ${name}`);
+            const body = encodeURIComponent(`Hola Bárbara,\n\nMe gustaría cotizar una obra personalizada:\n\n- Nombre: ${name}\n- Tipo de Obra: ${type}\n- Dimensiones: ${dims}\n- Detalles: ${msg}\n\nQuedo a la espera de tu respuesta.`);
+
+            // 3. Abrir cliente de correo
+            window.location.href = `mailto:barbaradavid.arte@gmail.com?subject=${subject}&body=${body}`;
+        }
+
         // --- LÓGICA DEL MODAL ---
         const modal = document.getElementById('projectModal');
         const closeBtn = document.querySelector('.close-btn');
         
-        // Elementos internos
         const mTitle = document.getElementById('modal-title');
         const mDesc = document.getElementById('modal-desc');
         const mImgMain = document.getElementById('modal-img-main');
         const mImgDetail = document.getElementById('modal-img-detail');
         const mVideo = document.getElementById('modal-video');
         const videoContainer = document.querySelector('.video-container');
-        const detailLabel = document.querySelectorAll('.label-text')[1]; // Label de detalle
+        const detailLabel = document.querySelectorAll('.label-text')[1];
+        const videoLabel = document.querySelectorAll('.label-text')[2];
 
         function openModal(id) {
-            // 1. Buscar la obra en la base de datos
             const art = artworks.find(item => item.id === id);
             
             if(art) {
-                // 2. Llenar textos
                 mTitle.innerText = art.title;
                 mDesc.innerText = art.desc;
-                
-                // 3. Llenar imágenes
                 mImgMain.src = art.imgMain;
                 
-                // Manejo de imagen detalle (ocultar si no existe)
                 if(art.imgDetail) {
                     mImgDetail.src = art.imgDetail;
                     mImgDetail.style.display = 'block';
@@ -523,30 +647,27 @@
                     detailLabel.style.display = 'none';
                 }
 
-                // 4. Manejo del Video (ocultar si no existe)
                 if(art.video && art.video !== "") {
                     mVideo.src = art.video;
                     videoContainer.style.display = 'block';
-                    document.querySelectorAll('.label-text')[2].style.display = 'block';
+                    videoLabel.style.display = 'block';
                 } else {
                     mVideo.src = "";
                     videoContainer.style.display = 'none';
-                    document.querySelectorAll('.label-text')[2].style.display = 'none';
+                    videoLabel.style.display = 'none';
                 }
 
-                // 5. Mostrar modal
                 modal.style.display = 'block';
-                document.body.style.overflow = 'hidden'; // Bloquear scroll fondo
+                document.body.style.overflow = 'hidden';
             }
         }
 
         function closeModal() {
             modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Restaurar scroll
-            mVideo.src = ""; // Detener video
+            document.body.style.overflow = 'auto';
+            mVideo.src = "";
         }
 
-        // Eventos
         closeBtn.onclick = closeModal;
         window.onclick = (e) => { if (e.target == modal) closeModal(); };
 
