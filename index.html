@@ -469,21 +469,22 @@
         <p class="section-subtitle">Diseñemos juntos una pieza única para tu hogar o proyecto arquitectónico.</p>
 
         <div class="form-container">
-            <form id="customForm" onsubmit="handleFormSubmit(event)">
+            <form action="https://formspree.io/f/mwvozbko" method="POST">
+                
                 <div class="form-group">
                     <label>Nombre Completo</label>
-                    <input type="text" id="f-name" required placeholder="Ej: María Pérez">
+                    <input type="text" name="nombre" required placeholder="Ej: María Pérez">
                 </div>
                 
                 <div class="form-group">
                     <label>Correo Electrónico</label>
-                    <input type="email" id="f-email" required placeholder="tucorreo@ejemplo.com">
+                    <input type="email" name="email" required placeholder="tucorreo@ejemplo.com">
                 </div>
 
                 <div class="form-group">
                     <label>Tipo de Obra</label>
-                    <select id="f-type">
-                        <option value="Quipu Decorativo de Pared">Quipu Decorativo de Pared</option>
+                    <select name="tipo_obra">
+                        <option value="Quipu Decorativo">Quipu Decorativo de Pared</option>
                         <option value="Tapiz Gran Formato">Tapiz de Gran Formato</option>
                         <option value="Escultura Colgante">Escultura Colgante 360°</option>
                         <option value="Instalación Corporativa">Instalación para Oficina/Hotel</option>
@@ -492,13 +493,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Dimensiones Aproximadas (Alto x Ancho)</label>
-                    <input type="text" id="f-dims" placeholder="Ej: 150cm x 80cm">
+                    <label>Dimensiones Aproximadas</label>
+                    <input type="text" name="dimensiones" placeholder="Ej: 150cm x 80cm">
                 </div>
 
                 <div class="form-group">
                     <label>Cuéntame tu idea</label>
-                    <textarea id="f-msg" rows="5" placeholder="Describe los colores, el estilo de tu espacio o qué te inspira..."></textarea>
+                    <textarea name="mensaje" rows="5" placeholder="Describe los colores, el estilo..."></textarea>
                 </div>
 
                 <button type="submit" class="btn-submit">Enviar Solicitud</button>
@@ -599,25 +600,7 @@
             }
         ];
 
-        // --- LÓGICA DEL FORMULARIO ---
-        function handleFormSubmit(event) {
-            event.preventDefault(); // Evita que la página se recargue
-
-            // 1. Capturar datos
-            const name = document.getElementById('f-name').value;
-            const type = document.getElementById('f-type').value;
-            const dims = document.getElementById('f-dims').value;
-            const msg = document.getElementById('f-msg').value;
-
-            // 2. Crear cuerpo del correo
-            const subject = encodeURIComponent(`Nuevo Pedido de Quipu: ${name}`);
-            const body = encodeURIComponent(`Hola Bárbara,\n\nMe gustaría cotizar una obra personalizada:\n\n- Nombre: ${name}\n- Tipo de Obra: ${type}\n- Dimensiones: ${dims}\n- Detalles: ${msg}\n\nQuedo a la espera de tu respuesta.`);
-
-            // 3. Abrir cliente de correo
-            window.location.href = `mailto:barbaradavid.arte@gmail.com?subject=${subject}&body=${body}`;
-        }
-
-        // --- LÓGICA DEL MODAL ---
+        // --- LÓGICA DEL MODAL (YA BORRAMOS handleFormSubmit) ---
         const modal = document.getElementById('projectModal');
         const closeBtn = document.querySelector('.close-btn');
         
