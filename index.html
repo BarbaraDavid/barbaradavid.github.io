@@ -548,7 +548,7 @@
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
-                    <a href="#" id="btn-cotizar" class="cta-button" onclick="setTimeout(closeModal, 500)">Cotizar esta obra</a>
+                    <a href="#" id="btn-cotizar" class="cta-button" onclick="closeModal()">Cotizar esta obra</a>
                 </div>
             </div>
         </div>
@@ -640,8 +640,8 @@
                 const subject = encodeURIComponent(`Consulta sobre obra: ${art.title}`);
                 const body = encodeURIComponent(`Hola Bárbara,\n\nEstoy interesado/a en la obra "${art.title}". ¿Podrías darme más información?`);
                 
-                mQuoteBtn.href = `mailto:barbaradavid.arte@gmail.com?subject=${subject}&body=${body}`;
-
+                mQuoteBtn.href = "#contacto";
+                
                 if(art.imgDetail) {
                     mImgDetail.src = art.imgDetail;
                     mImgDetail.style.display = 'block';
@@ -678,6 +678,7 @@
     </script>
 </body>
 </html>
+
 
 
 
