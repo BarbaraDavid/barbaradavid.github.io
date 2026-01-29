@@ -563,8 +563,7 @@
                 desc: "Este quipu contemporáneo tiene una cuerda principal y 57 cuerdas subsidiarias. Cada cuerda subsidiaria tiene un significado y un color: verde, si el acontecimiento ha sido positivo para el planeta, marrón si fue negativo.",
                 specs: "Medidas: 40x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar", 
                 imgMain: "espacioplaneta1.png",
-                video: "videoplaneta1.mp4",
-                poster: "espacioplaneta1.png",
+                video: "videoplaneta1.mp4", 
             },
             {
                 id: 2,
@@ -652,11 +651,9 @@
 
                 if(art.video && art.video !== "") {
                     mVideo.src = art.video;
-                    mVideo.parentElement.poster = art.poster ? art.poster : "planeta1";
                     videoContainer.style.display = 'block';
                     videoLabel.style.display = 'block';
-}
-                    else {
+                } else {
                     mVideo.src = "";
                     videoContainer.style.display = 'none';
                     videoLabel.style.display = 'none';
