@@ -134,51 +134,80 @@
 
         .content h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1.5rem; }
 
-        /* --- OBRAS (GRID) --- */
+        /* --- OBRAS (GRID) - NUEVO DISEÑO --- */
         #obras { background: #fff; }
 
         .grid-obras {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(2, 1fr); /* FORZAMOS 2 COLUMNAS */
+            gap: 4rem; 
+            margin-top: 3rem;
         }
 
         .obra-card {
-            cursor: pointer;
-            background: transparent;
-            transition: transform 0.3s ease;
+            position: relative; 
+            cursor: pointer;    
+            overflow: hidden;   
+            border-radius: 4px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
-
-        .obra-card:hover { transform: translateY(-5px); }
 
         .obra-card img { 
             width: 100%;
-            aspect-ratio: 4 / 3;
+            height: 550px; /* ALTURA FIJA PARA FOTOS GRANDES */
             object-fit: cover;
-            border-radius: 4px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: 0.5s;
+            display: block;
+            transition: transform 0.6s ease, filter 0.3s ease;
         }
 
+        /* EFECTO HOVER */
         .obra-card:hover img { 
-            filter: brightness(0.95);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: scale(1.08); /* ZOOM */
+            filter: brightness(0.7); /* OSCURECER */
+        }
+
+        /* TEXTO "VER DETALLE +" */
+        .obra-card::after {
+            content: "VER DETALLE +";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.8);
+            padding: 15px 25px;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            opacity: 0; 
+            transition: opacity 0.4s ease;
+            pointer-events: none; 
+        }
+
+        .obra-card:hover::after { opacity: 1; }
+
+        .obra-info {
+            padding: 20px 0 10px 0;
+            text-align: center;
         }
 
         .obra-info h3 { 
             font-family: 'Playfair Display', serif; 
-            margin-top: 1rem; 
-            font-size: 1.3rem; 
+            margin: 0; 
+            font-size: 1.5rem; 
             color: var(--text-color);
+            font-weight: 400;
         }
 
         .obra-info p {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 0.3rem;
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-
+        
         /* --- FORMULARIO PERSONALIZADO --- */
         #pedido {
             background-color: #f7f6f2;
@@ -381,6 +410,10 @@
             .modal-content { width: 95%; margin: 15% auto; }
             .modal-body { padding: 20px; }
             .form-container { padding: 20px; }
+            
+            /* --- AGREGA ESTAS DOS LÍNEAS: --- */
+            .grid-obras { grid-template-columns: 1fr; gap: 2rem; } 
+            .obra-card img { height: 400px; } 
         }
     </style>
 </head>
@@ -683,6 +716,7 @@
     </script>
 </body>
 </html>
+
 
 
 
