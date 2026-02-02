@@ -134,41 +134,42 @@
 
         .content h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1.5rem; }
 
-        /* --- OBRAS (GRID) - NUEVO DISEÑO --- */
+/* --- OBRAS (GRID) - DISEÑO ADAPTABLE --- */
         #obras { background: #fff; }
 
         .grid-obras {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* FORZAMOS 2 COLUMNAS */
-            gap: 4rem; 
+            grid-template-columns: repeat(2, 1fr); /* 2 Columnas */
+            gap: 4rem; /* Espacio entre obras */
             margin-top: 3rem;
+            align-items: start; /* <--- IMPORTANTE: Esto hace que cada tarjeta tenga su propia altura natural */
         }
 
         .obra-card {
             position: relative; 
             cursor: pointer;    
-            overflow: hidden;   
             border-radius: 4px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            /* Quitamos overflow hidden para que no recorte nada */
         }
 
-.obra-card img { 
-            width: 100%;
-            height: 600px; /* Altura fija para mantener el orden */
-            object-fit: contain; /* <--- LA CLAVE: Ajusta la imagen sin cortarla */
-            background-color: #f7f6f2; /* Color de fondo suave (tipo pared) para los espacios vacíos */
+        .obra-card img { 
+            width: 100%; /* Ocupa todo el ancho de su columna */
+            height: auto; /* <--- LA CLAVE: La altura se adapta a la foto original */
             display: block;
-            transition: transform 0.6s ease;
+            transition: transform 0.6s ease, filter 0.3s ease;
+            border-radius: 4px;
         }
 
-        /* Ajustamos el zoom para que sea sutil sobre la imagen entera */
-        .obra-card:hover img { 
-            transform: scale(1.05); 
-            /* Quitamos el filtro oscuro para que se aprecie mejor la obra limpia */
-            filter: none; 
-        }
+        /* --- EFECTO HOVER --- */
         
-        /* Ajustamos el botón "VER DETALLE" para que se lea bien aunque no oscurezcamos la foto */
+        .obra-card:hover img { 
+            /* Hacemos un zoom muy sutil. Como no tenemos marco, cuidado que no tape textos vecinos */
+            transform: scale(1.02); 
+            filter: brightness(0.7); /* Oscurecemos para que se lea el texto */
+        }
+
+        /* TEXTO "VER DETALLE +" */
         .obra-card::after {
             content: "VER DETALLE +";
             position: absolute;
@@ -176,20 +177,40 @@
             left: 50%;
             transform: translate(-50%, -50%);
             
-            color: #333; /* Texto oscuro para que contraste con el fondo claro */
-            background: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
-            border: 1px solid #333;
-            
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.8);
             padding: 15px 25px;
             font-family: 'Montserrat', sans-serif;
             letter-spacing: 2px;
             font-size: 0.8rem;
             text-transform: uppercase;
-            font-weight: 600;
             
             opacity: 0; 
             transition: opacity 0.4s ease;
             pointer-events: none; 
+        }
+
+        .obra-card:hover::after { opacity: 1; }
+
+        .obra-info {
+            padding: 20px 0 10px 0;
+            text-align: center;
+        }
+
+        .obra-info h3 { 
+            font-family: 'Playfair Display', serif; 
+            margin: 0; 
+            font-size: 1.5rem; 
+            color: var(--text-color);
+            font-weight: 400;
+        }
+
+        .obra-info p {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         /* --- FORMULARIO PERSONALIZADO --- */
@@ -700,6 +721,7 @@
     </script>
 </body>
 </html>
+
 
 
 
