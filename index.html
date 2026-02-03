@@ -606,9 +606,14 @@
                             </div>
                     </div>
 
-                    <div class="label-text">Lectura de la obra</div>
-                    <div class="video-container">
-                        <iframe id="modal-video" src="" frameborder="0" allowfullscreen></iframe>
+            <div id="video-wrapper" class="video-section-wrapper" style="display: none;">
+                        <h3 class="video-title">Lectura de la obra</h3>
+                        <div class="video-container">
+                            <iframe id="modal-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                        <p style="font-size: 0.7rem; color: #888; margin-top: 15px; text-transform: uppercase; letter-spacing: 1px;">
+                            Ver en alta definición
+                        </p>
                     </div>
                 </div>
                 
@@ -690,6 +695,7 @@
         const videoContainer = document.querySelector('.video-container');
         const videoLabel = document.querySelectorAll('.label-text')[1]; 
         const mQuoteBtn = document.getElementById('btn-cotizar');
+        const videoWrapper = document.getElementById('video-wrapper'); // <--- ESTA ES LA NUEVA
         
         // Referencias para el Collage
         const collageContainer = document.getElementById('collage-container');
@@ -748,15 +754,13 @@
                     collageContainer.style.display = 'none';
                 }
 
-                // 4. Video
+// 4. Video (Lógica Actualizada para el Efecto Cinema)
                 if(art.video && art.video !== "") {
                     mVideo.src = art.video;
-                    videoContainer.style.display = 'block';
-                    if(videoLabel) videoLabel.style.display = 'block';
+                    videoWrapper.style.display = 'block'; // Mostramos la caja gris con título y video
                 } else {
                     mVideo.src = "";
-                    videoContainer.style.display = 'none';
-                    if(videoLabel) videoLabel.style.display = 'none';
+                    videoWrapper.style.display = 'none'; // Ocultamos todo si no hay video
                 }
 
                 modal.style.display = 'block';
@@ -776,5 +780,6 @@
     </script>
 </body>
 </html>
+
 
 
