@@ -391,8 +391,7 @@
             from {opacity: 0; transform: translateY(20px);}
             to {opacity: 1; transform: translateY(0);}
         }
-
-        /* --- RESPONSIVE (CELULARES) --- */
+/* --- RESPONSIVE (CELULARES) --- */
         @media (max-width: 768px) {
             #concepto { grid-template-columns: 1fr; }
             .hero-logo .logo-name { font-size: 2.5rem; }
@@ -400,10 +399,11 @@
             nav .nav-links a { margin: 0 10px; }
             .modal-content { width: 95%; margin: 15% auto; }
             .modal-body { padding: 20px; }
+            .form-container { padding: 20px; }
             
-            /* AJUSTES DE LA GALERÍA PARA MÓVIL */
+            /* AJUSTES DE LA GALERÍA PRINCIPAL PARA MÓVIL */
             .grid-obras { 
-                grid-template-columns: 1fr; /* 1 sola columna */
+                grid-template-columns: 1fr; 
                 gap: 2rem; 
             } 
             
@@ -411,7 +411,17 @@
                 height: auto; 
                 max-height: none; 
             } 
+
+            /* --- NUEVO: AJUSTE DE MINIATURAS (COLLAGE) PARA MÓVIL --- */
+            .collage-grid {
+                grid-template-columns: repeat(4, 1fr); /* 4 fotos por fila */
+                gap: 5px; 
+            }
+            .collage-img {
+                height: 60px; /* Más pequeñitas para que entren bien */
+            }
         }
+
     </style>
 </head>
 <body>
@@ -558,68 +568,64 @@
 
     <script>
         // --- BASE DE DATOS OBRAS ---
+ // --- BASE DE DATOS OBRAS (CON GALERÍAS DE PRUEBA) ---
         const artworks = [
             {
                 id: 1,
                 title: "Crónica de la Tierra",
-                desc: "Este quipu contemporáneo tiene una cuerda principal y 57 cuerdas subsidiarias. Cada cuerda subsidiaria tiene un significado y un color: verde, si el acontecimiento ha sido positivo para el planeta, marrón si fue negativo.",
-                specs: "Medidas: 40x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar | Entrega con certificado de autenticidad",
+                desc: "Este quipu contemporáneo tiene una cuerda principal y 57 cuerdas subsidiarias...",
+                specs: "Medidas: 40x50 cm | Material: hilos 100% algodón...",
                 imgMain: "espacioplaneta1.png",
                 video: "videoplaneta1.mp4", 
-                gallery: [] // Agrega aquí tus fotos: ["foto1.jpg", "foto2.jpg"]
+                // AHORA TIENE FOTOS:
+                gallery: ["espacioplaneta1.png", "espaciocine.png", "precolombino.png"] 
             },
             {
                 id: 2,
                 title: "Cronología Andina",
-                desc: "Este quipu contemporáneo representa la línea de tiempo definitiva del Perú precolombino según el sistema de periodificación de John Rowe. Las cuerdas colgantes forman pares: una cuerda indica la fecha de inicio y al lado, la otra cuerda indica la fecha de fin de cada cultura.",
-                specs: "60x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar | Entrega con certificado de autenticidad",
+                desc: "Este quipu contemporáneo representa la línea de tiempo definitiva...",
+                specs: "60x50 cm | Material: hilos 100% algodón...",
                 imgMain: "espacioprecolombino.png",
                 video: "videoprecolombino1.mp4", 
-                gallery: []
+                gallery: ["espacioprecolombino.png", "precolombino.png", "espaciocine.png"]
             },
             {
                 id: 3,
                 title: "Voces Latinoamericanas",
-                desc: "Este quipu contemporáneo representa la fecha de nacimiento de 51 mujeres latinoamericanas que marcaron la historia de la mujer y su importancia en la región.",
-                specs: "60x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar | Entrega con certificado de autenticidad",
+                desc: "Este quipu contemporáneo representa la fecha de nacimiento...",
+                specs: "60x50 cm | Material: hilos 100% algodón...",
                 imgMain: "espaciomujeres.png",
                 video: "videomujeres.mp4",
-                gallery: []
+                gallery: ["espaciomujeres.png", "mujeres.png", "espacioplaneta1.png"]
             },
             {
                 id: 4,
                 title: "Cine de oro",
-                desc: "Este quipu representa la fecha de salida de 57 peliculas en blanco y negro que marcaron la historia del cine.",
-                specs: "Medidas: 70x90 cm | Material: hilos 100% algodón | Posibilidad de enmarcar | Entrega con certificado de autenticidad",
+                desc: "Este quipu representa la fecha de salida de 57 peliculas...",
+                specs: "Medidas: 70x90 cm | Material: hilos 100% algodón...",
                 imgMain: "espaciocine.png",
-                // --- EJEMPLO DE GALERÍA (ESTO FALTABA EN TU CÓDIGO) ---
-                gallery: [
-                    "espaciocine.png", // Vista general
-                    "cine.png",        // Detalle (Debería verse diferente)
-                    "espaciocine.png"  // Otro detalle
-                ],
+                gallery: ["espaciocine.png", "cine.png", "espaciocine.png"],
                 video: "videomujeres.mp4",
             },
             {
                 id: 5,
                 title: "Bitácora de la Tierra",
-                desc: "Este quipu contemporáneo en serie representa 50 años que han impactado el planeta tierra, desde 1866 hasta 2025, año de creación de esta obra.",
-                specs: "Medidas: 40x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar | Entrega con certificado de autenticidad",
+                desc: "Este quipu contemporáneo en serie representa 50 años...",
+                specs: "Medidas: 40x50 cm | Material: hilos 100% algodón...",
                 imgMain: "espacioplaneta2.png",
                 video: "videomujeres.mp4",
-                gallery: []
+                gallery: ["espacioplaneta2.png", "planeta2.jpeg", "espacioprecolombino.png"]
             },
             {
                 id: 6,
                 title: "Relato de una Nación",
-                desc: "La historia del Perú no es lineal, es un tejido de tensiones. Esta pieza anuda 52 momentos críticos de nuestra memoria: del brillo del oro virreinal a la opacidad de la crisis política actual, pasando por la esperanza republicana y el cemento de la migración. Una radiografía táctil de quiénes somos.",
-                specs: "Medidas: 40x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar | Entrega con certificado de autenticidad", 
+                desc: "La historia del Perú no es lineal, es un tejido de tensiones...",
+                specs: "Medidas: 40x50 cm | Material: hilos 100% algodón...", 
                 imgMain: "espacioperu.png",
                 video: "https://www.youtube.com/embed/ScMzIvxBSi4",
-                gallery: []
+                gallery: ["espacioperu.png", "historiaperu.jpg", "espaciocine.png"]
             }
         ];
-
         // --- LÓGICA DEL MODAL ---
         const modal = document.getElementById('projectModal');
         const closeBtn = document.querySelector('.close-btn');
@@ -718,3 +724,4 @@
     </script>
 </body>
 </html>
+
