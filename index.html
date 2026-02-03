@@ -665,6 +665,8 @@
 
     <script>
 // --- BASE DE DATOS OBRAS (CON GALERÍAS DE PRUEBA) ---
+<script>
+        // --- BASE DE DATOS OBRAS ---
         const artworks = [
             {
                 id: 1,
@@ -733,8 +735,8 @@
         const mVideo = document.getElementById('modal-video');
         const mQuoteBtn = document.getElementById('btn-cotizar');
         
-        // REFERENCIAS NUEVAS
-        const videoWrapper = document.getElementById('video-wrapper'); // Referencia a la caja gris del video
+        // REFERENCIAS NUEVAS (VIDEO Y COLLAGE)
+        const videoWrapper = document.getElementById('video-wrapper'); 
         const collageContainer = document.getElementById('collage-container');
         const collageGrid = document.getElementById('modal-collage-grid');
 
@@ -783,15 +785,19 @@
                 } else {
                     collageContainer.style.display = 'none';
                 }
-// 4. Video
-            if(art.video && art.video !== "") {
-                mVideo.src = art.video;
-                // videoBtn.href = art.video;  <--- ESTA LÍNEA LA BORRAS
-                videoWrapper.style.display = 'block'; 
-            } else {
-                mVideo.src = "";
-                // videoBtn.href = "#";        <--- ESTA LÍNEA TAMBIÉN LA BORRAS
-                videoWrapper.style.display = 'none'; 
+
+                // 4. LÓGICA DEL VIDEO (Con botón pantalla completa)
+                if(art.video && art.video !== "") {
+                    mVideo.src = art.video;
+                    videoWrapper.style.display = 'block'; 
+                } else {
+                    mVideo.src = "";
+                    videoWrapper.style.display = 'none'; 
+                }
+
+                // --- 5. MOSTRAR EL MODAL (Esto es lo que faltaba) ---
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
             }
         }
 
@@ -804,11 +810,10 @@
         closeBtn.onclick = closeModal;
         window.onclick = (e) => { if (e.target == modal) closeModal(); };
         
-// --- FUNCIÓN PARA PANTALLA COMPLETA NATIVA ---
+        // --- FUNCIÓN PARA PANTALLA COMPLETA NATIVA ---
         function toggleFullScreen() {
             const iframe = document.getElementById('modal-video');
             
-            // Intenta activar pantalla completa (funciona distinto según el navegador)
             if (iframe.requestFullscreen) {
                 iframe.requestFullscreen();
             } else if (iframe.webkitRequestFullscreen) { /* Safari / iPhone */
@@ -820,6 +825,7 @@
     </script>
 </body>
 </html>
+
 
 
 
