@@ -133,6 +133,14 @@
         }
 
         .content h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1.5rem; }
+        
+        /* Ajuste específico para el texto de la sección Concepto */
+        #concepto .content p {
+            font-size: 0.9rem; 
+            line-height: 1.8;   
+            color: #444;        
+            margin-bottom: 15px;
+        }
 
         /* --- OBRAS (GRID) - DISEÑO ADAPTABLE --- */
         #obras { background: #fff; }
@@ -302,20 +310,10 @@
             height: auto;
             border-radius: 2px;
             display: block;
-            /* ESTO ES LO QUE FALTABA PARA QUE EL CAMBIO SEA SUAVE */
+            /* Transición suave para el cambio de imagen */
             transition: opacity 0.3s ease; 
         }
 
-.label-text {
-            font-size: 0.8rem; /* Aumentado para igualar al título del collage */
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #333; /* Cambiado de gris (#999) a oscuro (#333) */
-            margin-bottom: 10px;
-            margin-top: 25px; /* Un poco más de aire arriba */
-            font-weight: 600; /* Negrita para que tenga el mismo peso */
-        }
-        
         .specs-text {
             font-size: 0.95rem;
             color: #444;
@@ -333,15 +331,13 @@
             padding-top: 20px;
         }
 
-/* --- ESTILOS DE TÍTULOS EN MODAL (UNIFICADOS) --- */
-        
-        /* Esto aplica la misma tipografía a "Vista General", "Lectura" y "Detalles" */
+        /* --- ESTILOS DE TÍTULOS EN MODAL (UNIFICADOS) --- */
         .label-text, 
         .collage-title {
             font-size: 0.7rem;          /* Tamaño pequeño y delicado */
             text-transform: uppercase;  /* Mayúsculas */
             letter-spacing: 2px;        /* Espaciado elegante */
-            color: #999;                /* Gris clarito (Tu preferido) */
+            color: #999;                /* Gris clarito */
             font-weight: 400;           /* Letra fina (normal) */
             display: block;
         }
@@ -357,6 +353,7 @@
             margin-bottom: 15px;
             margin-top: 0; /* El margen lo maneja su contenedor padre */
         }
+
         .collage-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
@@ -407,7 +404,8 @@
             from {opacity: 0; transform: translateY(20px);}
             to {opacity: 1; transform: translateY(0);}
         }
-/* --- RESPONSIVE (CELULARES) --- */
+
+        /* --- RESPONSIVE (CELULARES) --- */
         @media (max-width: 768px) {
             #concepto { grid-template-columns: 1fr; }
             .hero-logo .logo-name { font-size: 2.5rem; }
@@ -550,7 +548,7 @@
         &copy; 2026 Bárbara David | Arte en nudos
     </footer>
 
-<div id="projectModal" class="modal">
+    <div id="projectModal" class="modal">
         <span class="close-btn">&times;</span>
         <div class="modal-content">
             <div class="modal-body">
@@ -564,7 +562,7 @@
                 </div>
 
                 <div class="modal-media">
-                    <div class="label-text">Vista general (generada por IA)</div>
+                    <div class="label-text">Vista general</div>
                     <img id="modal-img-main" src="" alt="Vista Principal">
                     
                     <div id="collage-container" class="collage-section" style="display: none;">
@@ -587,8 +585,7 @@
     </div>
 
     <script>
-        // --- BASE DE DATOS OBRAS ---
- // --- BASE DE DATOS OBRAS (CON GALERÍAS DE PRUEBA) ---
+        // --- BASE DE DATOS OBRAS (CON GALERÍAS DE PRUEBA) ---
         const artworks = [
             {
                 id: 1,
@@ -603,7 +600,7 @@
                 id: 2,
                 title: "Cronología Andina",
                 desc: "Una línea de tiempo textil que materializa la periodificación de John Rowe sobre el Perú precolombino. Mediante pares de cuerdas que marcan inicios y fines, y un código de cintas de colores (gris, naranja, turquesa y dorado), la obra organiza milenios de historia, distinguiendo visualmente los Horizontes culturales de los Periodos Intermedios.",
-                specs: "60x50 cm | Material: hilos 100% algodón...",
+                specs: "Medidas: 60x50 cm | Material: hilos 100% algodón...",
                 imgMain: "espacioprecolombino.png",
                 video: "videoprecolombino1.mp4", 
                 gallery: ["precolombino.jpg", "detalle1precolombino.jpg", "detalle2precolombino.jpg", "detalle3precolombino.jpg", "detalle4precolombino.jpg"]
@@ -623,7 +620,7 @@
                 desc: "Una cinemateca textil que anuda la fecha de estreno de 57 obras maestras en blanco y negro, desde 1902 hasta 2024. La pieza organiza la historia en cinco actos —desde el cine silente hasta el contemporáneo— y distingue con un lazo dorado a tres hitos ganadores del Óscar a Mejor Película: Casablanca, La lista de Schindler y The Artist.",
                 specs: "Medidas: 70x90 cm | Material: hilos 100% algodón...",
                 imgMain: "espaciocine.png",
-                gallery: ["espaciocine.png", "cine.png", "espaciocine.png"]
+                gallery: ["espaciocine.png", "cine.png", "espaciocine.png"], // <--- AQUÍ FALTABA LA COMA EN TU CÓDIGO
                 video: "videomujeres.mp4",
             },
             {
@@ -645,6 +642,7 @@
                 gallery: ["espacioperu.png", "historiaperu.jpg", "espaciocine.png"]
             }
         ];
+
         // --- LÓGICA DEL MODAL ---
         const modal = document.getElementById('projectModal');
         const closeBtn = document.querySelector('.close-btn');
@@ -743,23 +741,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
