@@ -114,34 +114,92 @@
             letter-spacing: 1px;
         }
 
-        /* --- SOBRE MÍ --- */
+/* --- SOBRE MÍ (DISEÑO EDITORIAL) --- */
         #concepto {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr 1.2fr; /* Damos más espacio al texto */
+            gap: 5rem;
             align-items: center;
+            background-color: #fff; /* Aseguramos fondo limpio */
         }
 
         .img-perfil {
             width: 100%;
-            max-width: 350px; 
+            max-width: 320px; /* Foto más pequeña y elegante */
             height: auto;
             display: block;
             margin: 0 auto;
-            border-radius: 4px;
-            box-shadow: 10px 10px 0px rgba(140, 115, 85, 0.2);
+            border-radius: 2px;
+            /* Sombra más suave y artística */
+            box-shadow: 15px 15px 0px #f4f4f4; 
         }
 
-        .content h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .content h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 2.8rem; 
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            color: var(--text-color);
+        }
+
+        /* Primer párrafo estilo "Intro" (Más grande) */
+        .intro-text {
+            font-size: 1.05rem;
+            color: #333;
+            font-weight: 400;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Párrafos normales */
+        .content p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Caja de la Biografía (Estilo firma) */
+        .bio-box {
+            margin-top: 30px;
+            padding: 25px;
+            background-color: #faf9f6; /* Color crema muy suave */
+            border-left: 2px solid var(--accent-color); /* Línea elegante a la izquierda */
+        }
+
+        .bio-text {
+            font-size: 0.85rem !important; /* Forzamos tamaño pequeño */
+            color: #555 !important;
+            font-style: italic;
+            margin-bottom: 0 !important;
+        }
         
-        /* Ajuste específico para el texto de la sección Concepto */
-        #concepto .content p {
-            font-size: 0.9rem; 
-            line-height: 1.8;   
-            color: #444;        
-            margin-bottom: 15px;
+        .bio-name {
+            display: block;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: #000;
+            font-style: normal;
         }
 
+        /* Ajuste móvil para este nuevo diseño */
+        @media (max-width: 768px) {
+            #concepto { 
+                grid-template-columns: 1fr; 
+                gap: 3rem;
+                text-align: center; /* En celular centramos todo */
+            }
+            
+            .bio-box {
+                text-align: left; /* La bio se ve mejor alineada a la izquierda siempre */
+                margin-top: 20px;
+            }
+            
+            .img-perfil {
+                max-width: 280px; /* Aún más chica en celular */
+            }
+        }
         /* --- OBRAS (GRID) - DISEÑO ADAPTABLE --- */
         #obras { background: #fff; }
 
@@ -536,21 +594,26 @@
         </div>
     </header>
 
-    <section id="concepto">
-        <img src="BarbaraDavid.jpg" class="img-perfil" alt="Detalle de obra textil" style="object-fit: cover;">
+<section id="concepto">
+        <img src="BarbaraDavid.jpg" class="img-perfil" alt="Bárbara David en su estudio" style="object-fit: cover;">
         
         <div class="content">
-            <h2>Hilos con historia</h2>
+            <h2>Hilos con<br>historia</h2>
             
-            <p>El Quipu fue el sistema de registro de las civilizaciones andinas: una red de cuerdas y nudos utilizada para guardar información. Más allá de su función contable, lo entiendo como una escritura espacial. Mi obra explora su reingeniería, desatando sus nudos para tejer nuevas narrativas en el espacio contemporáneo.</p>
-            <br>
-            
-            <p>Utilizo fibras naturales como algodón y lana de alpaca para crear piezas que funcionan como partituras visuales. No busco replicar la tradición, sino dialogar con ella: cada cuerda tensada es un intento de darle una nueva voz al diseño moderno.</p>
-            <br>
-            
-            <p style="font-weight: 500; color: #333; border-top: 1px solid #ddd; padding-top: 20px; display: inline-block;">
-                Soy Bárbara David, francesa residente en Perú desde el 2012. Encuentro en el arte en nudos un punto de unión entre la historia y el presente. Desde una investigación constante y respetuosa de las fuentes tradicionales, nutro mi propuesta para transformar códigos andinos en obras que habitan galerías, espacios comerciales y hogares.
+            <p class="intro-text">
+                El Quipu fue el sistema de registro de las civilizaciones andinas: una escritura espacial de cuerdas y nudos. Mi obra explora su reingeniería, desatando sus nudos para tejer nuevas narrativas en el espacio contemporáneo.
             </p>
+            
+            <p>
+                Utilizo fibras naturales como algodón y lana de alpaca para crear piezas que funcionan como partituras visuales. No busco replicar la tradición, sino dialogar con ella: cada cuerda tensada es un intento de darle una nueva voz al diseño moderno.
+            </p>
+            
+            <div class="bio-box">
+                <span class="bio-name">Soy Bárbara David</span>
+                <p class="bio-text">
+                    Francesa residente en Perú desde el 2012. Encuentro en el arte en nudos un punto de unión entre la historia y el presente. Desde una investigación constante y respetuosa, transformo códigos andinos en obras que habitan galerías y hogares.
+                </p>
+            </div>
         </div>
     </section>
 
@@ -820,6 +883,7 @@
     </script>
 </body>
 </html>
+
 
 
 
