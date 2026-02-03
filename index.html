@@ -384,12 +384,47 @@
         }
 
         /* --- VIDEO --- */
+/* --- ESTILO VIDEO MEJORADO (EFECTO CINEMA) --- */
+        
+        /* Caja contenedora gris/beige para separar la sección */
+        .video-section-wrapper {
+            background-color: #f7f6f2; /* Color suave de fondo */
+            padding: 30px 20px;        /* Espacio interno */
+            margin-top: 40px;          /* Separación de lo de arriba */
+            border-radius: 4px;        /* Bordes suaves */
+            text-align: center;        /* Centrar todo */
+        }
+
+        /* Título específico para el video */
+        .video-title {
+            font-family: 'Playfair Display', serif; /* Tu fuente elegante */
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-style: italic; /* Un toque cursiva para diferenciarlo */
+        }
+
+        /* El video en sí */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
             overflow: hidden;
-            background: #f0f0f0;
+            background: #000; /* Fondo negro mientras carga */
+            
+            /* LA MAGIA: Sombra y Borde */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15); /* Sombra elegante */
+            border: 5px solid #fff; /* Marco blanco estilo fotografía */
+            max-width: 100%;
+            margin: 0 auto; /* Centrado */
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
 
         .video-container iframe {
@@ -741,4 +776,5 @@
     </script>
 </body>
 </html>
+
 
