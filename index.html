@@ -860,6 +860,7 @@
 
                 // --- 5. MOSTRAR EL MODAL ---
                 modal.style.display = 'block';
+                modal.scrollTop = 0; // <--- ESTA LÍNEA MÁGICA RESETEA EL SCROLL ARRIBA
                 document.body.style.overflow = 'hidden';
             }
         }
@@ -888,6 +889,7 @@
     </script>
 </body>
 </html>
+
 
 
 
