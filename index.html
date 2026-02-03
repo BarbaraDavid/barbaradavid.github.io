@@ -442,7 +442,42 @@
             from {opacity: 0; transform: translateY(20px);}
             to {opacity: 1; transform: translateY(0);}
         }
+/* --- BOTÓN VER PANTALLA COMPLETA --- */
+        .fullscreen-link {
+            /* 1. Estructura y Posición */
+            display: inline-block;
+            margin-top: 15px;      /* Separación del video */
+            padding: 8px 25px;     /* Relleno para que parezca un botón cómodo */
+            
+            /* 2. Tipografía */
+            font-family: 'Montserrat', sans-serif; /* Importante: los botones no heredan la letra automáticamente */
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #666;           /* Gris suave para no distraer */
+            
+            /* 3. Estética "Pastilla" */
+            background: transparent; /* Fondo transparente (quita el gris por defecto) */
+            border: 1px solid #ccc;  /* Borde fino y sutil */
+            border-radius: 30px;     /* Bordes totalmente redondos */
+            cursor: pointer;         /* Que aparezca la manito al pasar el mouse */
+            
+            /* 4. Suavidad */
+            transition: all 0.3s ease;
+        }
 
+        /* Efecto al pasar el mouse por encima (Hover) */
+        .fullscreen-link:hover {
+            background: #333;      /* Se vuelve oscuro */
+            color: #fff;           /* Letra blanca */
+            border-color: #333;    /* El borde también se oscurece */
+        }
+        
+        /* Efecto al hacer clic (Active) */
+        .fullscreen-link:active {
+            transform: scale(0.95); /* Pequeño efecto de "presionar" */
+        }
+        
         /* --- RESPONSIVE (CELULARES) --- */
         @media (max-width: 768px) {
             #concepto { grid-template-columns: 1fr; }
@@ -608,15 +643,16 @@
                         <div id="modal-collage-grid" class="collage-grid">
                             </div>
                     </div>
-
-            <div id="video-wrapper" class="video-section-wrapper" style="display: none;">
+<div id="video-wrapper" class="video-section-wrapper" style="display: none;">
                         <h3 class="video-title">Lectura de la obra</h3>
+                        
                         <div class="video-container">
                             <iframe id="modal-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </div>
-                        <p style="font-size: 0.7rem; color: #888; margin-top: 15px; text-transform: uppercase; letter-spacing: 1px;">
-                            Voltear el celular
-                        </p>
+
+                        <button id="btn-fullscreen" type="button" class="fullscreen-link" onclick="toggleFullScreen()">
+                            ⤢ Ver en pantalla completa
+                        </button>
                     </div>
                 </div>
                 
@@ -747,18 +783,15 @@
                 } else {
                     collageContainer.style.display = 'none';
                 }
-
-                // 4. Video (Lógica Actualizada para el Efecto Cinema)
-                if(art.video && art.video !== "") {
-                    mVideo.src = art.video;
-                    videoWrapper.style.display = 'block'; // Mostramos la caja gris
-                } else {
-                    mVideo.src = "";
-                    videoWrapper.style.display = 'none'; // Ocultamos la caja gris
-                }
-
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
+// 4. Video
+            if(art.video && art.video !== "") {
+                mVideo.src = art.video;
+                // videoBtn.href = art.video;  <--- ESTA LÍNEA LA BORRAS
+                videoWrapper.style.display = 'block'; 
+            } else {
+                mVideo.src = "";
+                // videoBtn.href = "#";        <--- ESTA LÍNEA TAMBIÉN LA BORRAS
+                videoWrapper.style.display = 'none'; 
             }
         }
 
@@ -770,10 +803,24 @@
 
         closeBtn.onclick = closeModal;
         window.onclick = (e) => { if (e.target == modal) closeModal(); };
-
+        
+// --- FUNCIÓN PARA PANTALLA COMPLETA NATIVA ---
+        function toggleFullScreen() {
+            const iframe = document.getElementById('modal-video');
+            
+            // Intenta activar pantalla completa (funciona distinto según el navegador)
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.webkitRequestFullscreen) { /* Safari / iPhone */
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { /* IE11 */
+                iframe.msRequestFullscreen();
+            }
+        }
     </script>
 </body>
 </html>
+
 
 
 
