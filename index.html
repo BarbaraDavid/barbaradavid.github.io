@@ -203,8 +203,11 @@
             }
         }
         /* --- OBRAS (GRID) - DISEÑO ADAPTABLE --- */
-        #obras { background: #fff; }
-
+        #obras { 
+            background: #fff; 
+            padding-top: 0; /* Quitamos el relleno superior de esta sección */
+            margin-top: -2rem; /* Opcional: Subimos un poquito más la sección para pegarla más */
+        }
         .grid-obras {
             display: grid;
             grid-template-columns: repeat(2, 1fr); /* 2 Columnas */
@@ -885,6 +888,7 @@
     </script>
 </body>
 </html>
+
 
 
 
