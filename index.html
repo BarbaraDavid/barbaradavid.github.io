@@ -534,19 +534,22 @@
         &copy; 2026 Bárbara David | Arte en nudos
     </footer>
 
-    <div id="projectModal" class="modal">
+<div id="projectModal" class="modal">
         <span class="close-btn">&times;</span>
         <div class="modal-content">
             <div class="modal-body">
+                
                 <div class="modal-header">
                     <h2 id="modal-title">Título</h2>
+                    
+                    <p id="modal-specs" class="specs-text" style="margin-bottom: 20px; display: inline-block; width: auto;"></p>
+                    
                     <p id="modal-desc" class="modal-desc">Descripción...</p>
                 </div>
+
                 <div class="modal-media">
                     <div class="label-text">Vista general</div>
                     <img id="modal-img-main" src="" alt="Vista Principal">
-                    
-                    <p id="modal-specs" class="specs-text"></p>
                     
                     <div id="collage-container" class="collage-section" style="display: none;">
                         <h4 class="collage-title">Detalles (Click para ampliar)</h4>
@@ -559,6 +562,7 @@
                         <iframe id="modal-video" src="" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
+                
                 <div style="text-align: center; margin-top: 30px;">
                     <a href="#" id="btn-cotizar" class="cta-button" onclick="closeModal()">Cotizar esta obra</a>
                 </div>
@@ -577,8 +581,7 @@
                 specs: "Medidas: 40x50 cm | Material: hilos 100% algodón...",
                 imgMain: "espacioplaneta1.png",
                 video: "videoplaneta1.mp4", 
-                // AHORA TIENE FOTOS:
-                gallery: ["espacioplaneta1.png", "espaciocine.png", "precolombino.png"] 
+                gallery: ["planeta1.png", "espacioplaneta1.png", "espacioplaneta1.png", "precolombino.png", "detalle1planeta1.jpg", "detalle2planeta1.jpg"] 
             },
             {
                 id: 2,
@@ -724,4 +727,5 @@
     </script>
 </body>
 </html>
+
 
