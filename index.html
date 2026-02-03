@@ -625,7 +625,7 @@
     </div>
 
     <script>
-        // --- BASE DE DATOS OBRAS (CON GALERÍAS DE PRUEBA) ---
+// --- BASE DE DATOS OBRAS (CON GALERÍAS DE PRUEBA) ---
         const artworks = [
             {
                 id: 1,
@@ -660,7 +660,7 @@
                 desc: "Una cinemateca textil que anuda la fecha de estreno de 57 obras maestras en blanco y negro, desde 1902 hasta 2024. La pieza organiza la historia en cinco actos —desde el cine silente hasta el contemporáneo— y distingue con un lazo dorado a tres hitos ganadores del Óscar a Mejor Película: Casablanca, La lista de Schindler y The Artist.",
                 specs: "Medidas: 70x90 cm | Material: hilos 100% algodón...",
                 imgMain: "espaciocine.png",
-                gallery: ["espaciocine.png", "cine.png", "espaciocine.png"], // <--- AQUÍ FALTABA LA COMA EN TU CÓDIGO
+                gallery: ["espaciocine.png", "cine.png", "espaciocine.png"],
                 video: "videomujeres.mp4",
             },
             {
@@ -692,12 +692,10 @@
         const mSpecs = document.getElementById('modal-specs');
         const mImgMain = document.getElementById('modal-img-main');
         const mVideo = document.getElementById('modal-video');
-        const videoContainer = document.querySelector('.video-container');
-        const videoLabel = document.querySelectorAll('.label-text')[1]; 
         const mQuoteBtn = document.getElementById('btn-cotizar');
-        const videoWrapper = document.getElementById('video-wrapper'); // <--- ESTA ES LA NUEVA
         
-        // Referencias para el Collage
+        // REFERENCIAS NUEVAS
+        const videoWrapper = document.getElementById('video-wrapper'); // Referencia a la caja gris del video
         const collageContainer = document.getElementById('collage-container');
         const collageGrid = document.getElementById('modal-collage-grid');
 
@@ -710,7 +708,7 @@
                 mDesc.innerText = art.desc;
                 mSpecs.innerText = art.specs ? art.specs : "";
                 mImgMain.src = art.imgMain;
-                mImgMain.style.opacity = 1; // Resetear opacidad
+                mImgMain.style.opacity = 1; 
                 
                 // 2. Link correo
                 const subject = encodeURIComponent(`Consulta sobre obra: ${art.title}`);
@@ -718,7 +716,7 @@
                 mQuoteBtn.href = `mailto:barbaradavid.arte@gmail.com?subject=${subject}&body=${body}`;
 
                 // --- 3. LÓGICA DEL COLLAGE ---
-                collageGrid.innerHTML = ""; // Limpiar
+                collageGrid.innerHTML = ""; 
                 
                 if (art.gallery && art.gallery.length > 0) {
                     collageContainer.style.display = 'block';
@@ -728,22 +726,15 @@
                         thumb.src = imgSrc;
                         thumb.classList.add('collage-img');
                         
-                        // Si es la imagen actual, marcarla
                         if(imgSrc === art.imgMain) thumb.classList.add('active');
 
-                        // Click para cambiar foto grande
                         thumb.onclick = function() {
-                            // Efecto visual (Fade Out)
                             mImgMain.style.opacity = 0;
-                            
                             setTimeout(() => {
-                                // Cambio de foto
                                 mImgMain.src = imgSrc;
-                                // Efecto visual (Fade In)
                                 mImgMain.style.opacity = 1;
-                            }, 300); // 300ms de espera coincide con la transición CSS
+                            }, 300); 
 
-                            // Actualizar borde activo
                             document.querySelectorAll('.collage-img').forEach(el => el.classList.remove('active'));
                             thumb.classList.add('active');
                         };
@@ -754,13 +745,13 @@
                     collageContainer.style.display = 'none';
                 }
 
-// 4. Video (Lógica Actualizada para el Efecto Cinema)
+                // 4. Video (Lógica Actualizada para el Efecto Cinema)
                 if(art.video && art.video !== "") {
                     mVideo.src = art.video;
-                    videoWrapper.style.display = 'block'; // Mostramos la caja gris con título y video
+                    videoWrapper.style.display = 'block'; // Mostramos la caja gris
                 } else {
                     mVideo.src = "";
-                    videoWrapper.style.display = 'none'; // Ocultamos todo si no hay video
+                    videoWrapper.style.display = 'none'; // Ocultamos la caja gris
                 }
 
                 modal.style.display = 'block';
@@ -780,6 +771,7 @@
     </script>
 </body>
 </html>
+
 
 
 
