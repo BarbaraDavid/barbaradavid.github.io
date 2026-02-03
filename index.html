@@ -213,6 +213,52 @@
             letter-spacing: 1px;
             font-weight: 500; /* Un poquito de peso para que se lea bien aunque sea chica */
         }
+        /* --- ESTILOS DEL COLLAGE (NUEVO) --- */
+        .collage-section {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .collage-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .collage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Crea columnas automáticas */
+            gap: 10px;
+        }
+
+        .collage-img {
+            width: 100%;
+            height: 80px; /* Altura fija para que se vean ordenadas */
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent; /* Borde invisible listo para activarse */
+            opacity: 0.7; /* Un poco transparentes si no están seleccionadas */
+        }
+
+        /* Efecto al pasar el mouse */
+        .collage-img:hover {
+            transform: scale(1.05);
+            opacity: 1;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Foto seleccionada actualmente */
+        .collage-img.active {
+            border-color: var(--accent-color); /* Borde del color de tu marca */
+            opacity: 1;
+            transform: scale(0.95);
+        }
         
         /* --- FORMULARIO PERSONALIZADO --- */
         #pedido {
@@ -552,13 +598,14 @@
                 <div class="modal-media">
                     <div class="label-text">Vista general elaborada con IA</div>
                     <img id="modal-img-main" src="" alt="Vista Principal">
-                    
-                    <div class="label-text">Detalle de Textura</div>
-                    
+                                        
                     <p id="modal-specs" class="specs-text"></p>
                     
-                    <img id="modal-img-detail" src="" alt="Detalle">
-                    
+                    <div id="collage-container" class="collage-section" style="display: none;">
+                        <h4 class="collage-title">Detalles (Click para ampliar)</h4>
+                        <div id="modal-collage-grid" class="collage-grid">
+                            </div>
+                    </div>                    
                     <div class="label-text">Lectura de la obra</div>
                     <div class="video-container">
                         <iframe id="modal-video" src="" frameborder="0" allowfullscreen></iframe>
@@ -580,6 +627,11 @@
                 desc: "Este quipu contemporáneo tiene una cuerda principal y 57 cuerdas subsidiarias. Cada cuerda subsidiaria tiene un significado y un color: verde, si el acontecimiento ha sido positivo para el planeta, marrón si fue negativo.",
                 specs: "Medidas: 40x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar | Entrega con certificado de autenticidad",
                 imgMain: "espacioplaneta1.png",
+                gallery: [
+                    "espaciocine.png", // Ponemos la principal para poder volver a verla
+                    "cine.png",        // Foto detalle 1
+                    "espaciocine.png"  // Foto detalle 2 (repite o pon otra real)
+                ],
                 video: "videoplaneta1.mp4", 
             },
             {
@@ -638,48 +690,81 @@
         const videoContainer = document.querySelector('.video-container');
         const detailLabel = document.querySelectorAll('.label-text')[1];
         const videoLabel = document.querySelectorAll('.label-text')[2];
-        const mQuoteBtn = document.getElementById('btn-cotizar'); // Seleccionamos el botón
+        const mQuoteBtn = document.getElementById('btn-cotizar'); 
+        const collageContainer = document.getElementById('collage-container');
+        const collageGrid = document.getElementById('modal-collage-grid');
 
-        function openModal(id) {
+function openModal(id) {
             const art = artworks.find(item => item.id === id);
             
             if(art) {
+                // 1. Cargar textos e imagen principal
                 mTitle.innerText = art.title;
                 mDesc.innerText = art.desc;
                 mSpecs.innerText = art.specs ? art.specs : "";
-                mImgMain.src = art.imgMain;
                 
-                // ACTUALIZACIÓN DINÁMICA DEL LINK DE CORREO
-                // Creamos el asunto y el cuerpo del mensaje automáticamente
+                mImgMain.src = art.imgMain;
+                mImgMain.style.opacity = 1; // Aseguramos que sea visible
+                
+                // 2. Link del correo
                 const subject = encodeURIComponent(`Consulta sobre obra: ${art.title}`);
                 const body = encodeURIComponent(`Hola Bárbara,\n\nEstoy interesado/a en la obra "${art.title}". ¿Podrías darme más información?`);
+                mQuoteBtn.href = `mailto:barbaradavid.arte@gmail.com?subject=${subject}&body=${body}`;
+
+                // --- 3. LÓGICA DEL COLLAGE (NUEVA) ---
+                collageGrid.innerHTML = ""; // Borramos fotos de la apertura anterior
                 
-                mQuoteBtn.href = "#contacto";
-                
-                if(art.imgDetail) {
-                    mImgDetail.src = art.imgDetail;
-                    mImgDetail.style.display = 'block';
-                    detailLabel.style.display = 'block';
+                // Verificamos si existe la galería y si tiene fotos
+                if (art.gallery && art.gallery.length > 0) {
+                    collageContainer.style.display = 'block'; // Mostramos la sección
+                    
+                    art.gallery.forEach(imgSrc => {
+                        // Creamos la etiqueta <img> en memoria
+                        const thumb = document.createElement('img');
+                        thumb.src = imgSrc;
+                        thumb.classList.add('collage-img');
+                        
+                        // Si esta miniatura es igual a la principal actual, márcala como activa
+                        if(imgSrc === art.imgMain) thumb.classList.add('active');
+
+                        // Qué pasa al hacer CLICK en la miniatura
+                        thumb.onclick = function() {
+                            // Cambiamos la foto grande con un pequeño parpadeo suave
+                            mImgMain.style.opacity = 0;
+                            setTimeout(() => {
+                                mImgMain.src = imgSrc;
+                                mImgMain.style.opacity = 1;
+                            }, 200);
+
+                            // Quitamos la clase 'active' a todas y se la ponemos a la clickeada
+                            document.querySelectorAll('.collage-img').forEach(el => el.classList.remove('active'));
+                            thumb.classList.add('active');
+                        };
+
+                        // Agregamos la foto al grid
+                        collageGrid.appendChild(thumb);
+                    });
                 } else {
-                    mImgDetail.style.display = 'none';
-                    detailLabel.style.display = 'none';
+                    // Si no hay galería, ocultamos la sección
+                    collageContainer.style.display = 'none';
                 }
 
+                // 4. Cargar Video
                 if(art.video && art.video !== "") {
                     mVideo.src = art.video;
                     videoContainer.style.display = 'block';
-                    videoLabel.style.display = 'block';
+                    if(videoLabel) videoLabel.style.display = 'block';
                 } else {
                     mVideo.src = "";
                     videoContainer.style.display = 'none';
-                    videoLabel.style.display = 'none';
+                    if(videoLabel) videoLabel.style.display = 'none';
                 }
 
+                // 5. Mostrar el modal
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
             }
         }
-
         function closeModal() {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
@@ -692,6 +777,7 @@
     </script>
 </body>
 </html>
+
 
 
 
