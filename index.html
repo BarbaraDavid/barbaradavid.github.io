@@ -122,9 +122,9 @@
             align-items: center;
         }
 
-.img-perfil {
+        .img-perfil {
             width: 100%;
-            max-width: 450px;  /* <--- CAMBIA ESTE NÚMERO (Antes era 250px) */
+            max-width: 450px; 
             height: auto;
             display: block;
             margin: 0 auto;
@@ -134,7 +134,7 @@
 
         .content h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1.5rem; }
 
-/* --- OBRAS (GRID) - DISEÑO ADAPTABLE --- */
+        /* --- OBRAS (GRID) - DISEÑO ADAPTABLE --- */
         #obras { background: #fff; }
 
         .grid-obras {
@@ -142,7 +142,7 @@
             grid-template-columns: repeat(2, 1fr); /* 2 Columnas */
             gap: 4rem; /* Espacio entre obras */
             margin-top: 3rem;
-            align-items: start; /* <--- IMPORTANTE: Esto hace que cada tarjeta tenga su propia altura natural */
+            align-items: start; /* Importante para altura natural */
         }
 
         .obra-card {
@@ -150,23 +150,20 @@
             cursor: pointer;    
             border-radius: 4px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            /* Quitamos overflow hidden para que no recorte nada */
         }
 
         .obra-card img { 
-            width: 100%; /* Ocupa todo el ancho de su columna */
-            height: auto; /* <--- LA CLAVE: La altura se adapta a la foto original */
+            width: 100%; 
+            height: auto; /* Altura automática */
             display: block;
             transition: transform 0.6s ease, filter 0.3s ease;
             border-radius: 4px;
         }
 
         /* --- EFECTO HOVER --- */
-        
         .obra-card:hover img { 
-            /* Hacemos un zoom muy sutil. Como no tenemos marco, cuidado que no tape textos vecinos */
             transform: scale(1.02); 
-            filter: brightness(0.7); /* Oscurecemos para que se lea el texto */
+            filter: brightness(0.7); 
         }
 
         /* TEXTO "VER DETALLE +" */
@@ -205,74 +202,14 @@
             font-weight: 400;
         }
 
-.obra-info p {
-            font-size: 0.75rem; /* <--- MÁS PEQUEÑO (Letra fina y elegante) */
+        .obra-info p {
+            font-size: 0.75rem; 
             color: #888;
             margin-top: 5px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-weight: 500; /* Un poquito de peso para que se lea bien aunque sea chica */
+            font-weight: 500;
         }
-        
-        /* --- FORMULARIO PERSONALIZADO --- */
-        #pedido {
-            background-color: #f7f6f2;
-        }
-
-        .form-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 40px;
-            border: 1px solid #eee;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
-        }
-
-        .form-group { margin-bottom: 25px; }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            color: var(--accent-color);
-        }
-
-        .form-group input, 
-        .form-group select, 
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
-            background-color: var(--input-bg);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            outline: none;
-            transition: border 0.3s;
-        }
-
-        .form-group input:focus, 
-        .form-group select:focus, 
-        .form-group textarea:focus {
-            border-color: var(--accent-color);
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 15px;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .btn-submit:hover { background-color: var(--accent-color); }
 
         /* --- CONTACTO --- */
         #contacto {
@@ -365,6 +302,7 @@
             height: auto;
             border-radius: 2px;
             display: block;
+            transition: opacity 0.3s ease; /* Suavidad al cambiar foto */
         }
 
         .label-text {
@@ -386,6 +324,52 @@
             margin-bottom: 10px;
         }
 
+        /* --- ESTILOS DEL COLLAGE (NUEVO) --- */
+        .collage-section {
+            margin-top: 15px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .collage-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .collage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+        }
+
+        .collage-img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            opacity: 0.7;
+        }
+
+        .collage-img:hover {
+            transform: scale(1.05);
+            opacity: 1;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .collage-img.active {
+            border-color: var(--accent-color);
+            opacity: 1;
+            transform: scale(0.95);
+        }
+
+        /* --- VIDEO --- */
         .video-container {
             position: relative;
             padding-bottom: 56.25%;
@@ -407,7 +391,7 @@
             to {opacity: 1; transform: translateY(0);}
         }
 
-/* --- RESPONSIVE (CELULARES) --- */
+        /* --- RESPONSIVE (CELULARES) --- */
         @media (max-width: 768px) {
             #concepto { grid-template-columns: 1fr; }
             .hero-logo .logo-name { font-size: 2.5rem; }
@@ -415,7 +399,6 @@
             nav .nav-links a { margin: 0 10px; }
             .modal-content { width: 95%; margin: 15% auto; }
             .modal-body { padding: 20px; }
-            .form-container { padding: 20px; }
             
             /* AJUSTES DE LA GALERÍA PARA MÓVIL */
             .grid-obras { 
@@ -424,9 +407,8 @@
             } 
             
             .obra-card img { 
-                /* CAMBIO CLAVE: Quitamos los 400px fijos */
-                height: auto; /* La altura se adapta sola, sin estirarse */
-                max-height: none; /* Nos aseguramos de que no tenga límites */
+                height: auto; 
+                max-height: none; 
             } 
         }
     </style>
@@ -460,7 +442,7 @@
         </div>
     </header>
 
-<section id="concepto">
+    <section id="concepto">
         <img src="BarbaraDavid.jpg" class="img-perfil" alt="Detalle de obra textil" style="object-fit: cover;">
         
         <div class="content">
@@ -550,14 +532,16 @@
                     <p id="modal-desc" class="modal-desc">Descripción...</p>
                 </div>
                 <div class="modal-media">
-                    <div class="label-text">Vista general elaborada con IA</div>
+                    <div class="label-text">Vista general</div>
                     <img id="modal-img-main" src="" alt="Vista Principal">
                     
-                    <div class="label-text">Detalle de Textura</div>
-                    
                     <p id="modal-specs" class="specs-text"></p>
-                    
-                    <img id="modal-img-detail" src="" alt="Detalle">
+
+                    <div id="collage-container" class="collage-section" style="display: none;">
+                        <h4 class="collage-title">Detalles (Click para ampliar)</h4>
+                        <div id="modal-collage-grid" class="collage-grid">
+                            </div>
+                    </div>
                     
                     <div class="label-text">Lectura de la obra</div>
                     <div class="video-container">
@@ -581,6 +565,7 @@
                 specs: "Medidas: 40x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar | Entrega con certificado de autenticidad",
                 imgMain: "espacioplaneta1.png",
                 video: "videoplaneta1.mp4", 
+                gallery: [] // Agrega fotos aquí: ["foto1.jpg", "foto2.jpg"]
             },
             {
                 id: 2,
@@ -589,6 +574,7 @@
                 specs: "60x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar | Entrega con certificado de autenticidad",
                 imgMain: "espacioprecolombino.png",
                 video: "videoprecolombino1.mp4", 
+                gallery: []
             },
             {
                 id: 3,
@@ -597,6 +583,7 @@
                 specs: "60x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar | Entrega con certificado de autenticidad",
                 imgMain: "espaciomujeres.png",
                 video: "videomujeres.mp4",
+                gallery: []
             },
             {
                 id: 4,
@@ -604,7 +591,12 @@
                 desc: "Este quipu representa la fecha de salida de 57 peliculas en blanco y negro que marcaron la historia del cine.",
                 specs: "Medidas: 70x90 cm | Material: hilos 100% algodón | Posibilidad de enmarcar | Entrega con certificado de autenticidad",
                 imgMain: "espaciocine.png",
-                imgDetail: "espaciocine.png",
+                // --- EJEMPLO DE GALERÍA (AGREGA AQUÍ TUS FOTOS DE DETALLE) ---
+                gallery: [
+                    "espaciocine.png", 
+                    "cine.png", 
+                    "espaciocine.png" // Repite o pon fotos de texturas
+                ],
                 video: "videomujeres.mp4",
             },
             {
@@ -614,6 +606,7 @@
                 specs: "Medidas: 40x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar | Entrega con certificado de autenticidad",
                 imgMain: "espacioplaneta2.png",
                 video: "videomujeres.mp4",
+                gallery: []
             },
             {
                 id: 6,
@@ -622,6 +615,7 @@
                 specs: "Medidas: 40x50 cm | Material: hilos 100% algodón | Posibilidad de enmarcar | Entrega con certificado de autenticidad", 
                 imgMain: "espacioperu.png",
                 video: "https://www.youtube.com/embed/ScMzIvxBSi4",
+                gallery: []
             }
         ];
 
@@ -633,12 +627,14 @@
         const mDesc = document.getElementById('modal-desc');
         const mSpecs = document.getElementById('modal-specs');
         const mImgMain = document.getElementById('modal-img-main');
-        const mImgDetail = document.getElementById('modal-img-detail');
         const mVideo = document.getElementById('modal-video');
         const videoContainer = document.querySelector('.video-container');
-        const detailLabel = document.querySelectorAll('.label-text')[1];
-        const videoLabel = document.querySelectorAll('.label-text')[2];
-        const mQuoteBtn = document.getElementById('btn-cotizar'); // Seleccionamos el botón
+        const videoLabel = document.querySelectorAll('.label-text')[1]; // Ajuste de índice
+        const mQuoteBtn = document.getElementById('btn-cotizar');
+        
+        // Referencias para el Collage
+        const collageContainer = document.getElementById('collage-container');
+        const collageGrid = document.getElementById('modal-collage-grid');
 
         function openModal(id) {
             const art = artworks.find(item => item.id === id);
@@ -648,31 +644,53 @@
                 mDesc.innerText = art.desc;
                 mSpecs.innerText = art.specs ? art.specs : "";
                 mImgMain.src = art.imgMain;
+                mImgMain.style.opacity = 1; // Reset opacity
                 
-                // ACTUALIZACIÓN DINÁMICA DEL LINK DE CORREO
-                // Creamos el asunto y el cuerpo del mensaje automáticamente
+                // Actualizar botón de cotizar
                 const subject = encodeURIComponent(`Consulta sobre obra: ${art.title}`);
                 const body = encodeURIComponent(`Hola Bárbara,\n\nEstoy interesado/a en la obra "${art.title}". ¿Podrías darme más información?`);
+                mQuoteBtn.href = `mailto:barbaradavid.arte@gmail.com?subject=${subject}&body=${body}`;
+
+                // --- LÓGICA DEL COLLAGE ---
+                collageGrid.innerHTML = ""; // Limpiar
                 
-                mQuoteBtn.href = "#contacto";
-                
-                if(art.imgDetail) {
-                    mImgDetail.src = art.imgDetail;
-                    mImgDetail.style.display = 'block';
-                    detailLabel.style.display = 'block';
+                if (art.gallery && art.gallery.length > 0) {
+                    collageContainer.style.display = 'block';
+                    
+                    art.gallery.forEach(imgSrc => {
+                        const thumb = document.createElement('img');
+                        thumb.src = imgSrc;
+                        thumb.classList.add('collage-img');
+                        
+                        // Click para cambiar la foto principal
+                        thumb.onclick = function() {
+                            // Efecto visual
+                            mImgMain.style.opacity = 0;
+                            setTimeout(() => {
+                                mImgMain.src = imgSrc;
+                                mImgMain.style.opacity = 1;
+                            }, 200);
+
+                            // Marcar activo
+                            document.querySelectorAll('.collage-img').forEach(el => el.classList.remove('active'));
+                            thumb.classList.add('active');
+                        };
+
+                        collageGrid.appendChild(thumb);
+                    });
                 } else {
-                    mImgDetail.style.display = 'none';
-                    detailLabel.style.display = 'none';
+                    collageContainer.style.display = 'none';
                 }
 
+                // --- VIDEO ---
                 if(art.video && art.video !== "") {
                     mVideo.src = art.video;
                     videoContainer.style.display = 'block';
-                    videoLabel.style.display = 'block';
+                    if(videoLabel) videoLabel.style.display = 'block';
                 } else {
                     mVideo.src = "";
                     videoContainer.style.display = 'none';
-                    videoLabel.style.display = 'none';
+                    if(videoLabel) videoLabel.style.display = 'none';
                 }
 
                 modal.style.display = 'block';
@@ -692,56 +710,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
