@@ -410,13 +410,16 @@
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
             overflow: hidden;
-            background: #000; /* Fondo negro mientras carga */
+            background: #000; 
             
             /* LA MAGIA: Sombra y Borde */
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15); /* Sombra elegante */
-            border: 5px solid #fff; /* Marco blanco estilo fotografía */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
+            
+            /* CAMBIO AQUÍ: De #fff (blanco) a #000 (negro) */
+            border: 5px solid #000; 
+            
             max-width: 100%;
-            margin: 0 auto; /* Centrado */
+            margin: 0 auto; 
         }
 
         .video-container iframe {
@@ -612,7 +615,7 @@
                             <iframe id="modal-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </div>
                         <p style="font-size: 0.7rem; color: #888; margin-top: 15px; text-transform: uppercase; letter-spacing: 1px;">
-                            Ver en alta definición
+                            Voltear el celular
                         </p>
                     </div>
                 </div>
@@ -771,6 +774,7 @@
     </script>
 </body>
 </html>
+
 
 
 
