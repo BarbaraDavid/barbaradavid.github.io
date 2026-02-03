@@ -333,27 +333,30 @@
             padding-top: 20px;
         }
 
- /* Estilo para "Vista general" y "Lectura de la obra" */
-.label-text {
-            font-size: 0.8rem; /* Aumentado para igualar al título del collage */
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #333; /* Cambiado de gris (#999) a oscuro (#333) */
-            margin-bottom: 10px;
-            margin-top: 25px; /* Un poco más de aire arriba */
-            font-weight: 600; /* Negrita para que tenga el mismo peso */
-        }
-
-        /* Estilo para el título "Detalles" (Igualamos al anterior) */
+/* --- ESTILOS DE TÍTULOS EN MODAL (UNIFICADOS) --- */
+        
+        /* Esto aplica la misma tipografía a "Vista General", "Lectura" y "Detalles" */
+        .label-text, 
         .collage-title {
-            font-size: 0.7rem; /* Mismo tamaño pequeño */
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #999; /* Mismo gris clarito */
-            margin-bottom: 10px;
-            font-weight: 400; /* Letra fina */
+            font-size: 0.7rem;          /* Tamaño pequeño y delicado */
+            text-transform: uppercase;  /* Mayúsculas */
+            letter-spacing: 2px;        /* Espaciado elegante */
+            color: #999;                /* Gris clarito (Tu preferido) */
+            font-weight: 400;           /* Letra fina (normal) */
+            display: block;
         }
 
+        /* Márgenes específicos para "Vista General" y "Lectura" */
+        .label-text {
+            margin-bottom: 8px;
+            margin-top: 25px; /* Un poco de aire arriba */
+        }
+
+        /* Márgenes específicos para "Detalles" */
+        .collage-title {
+            margin-bottom: 15px;
+            margin-top: 0; /* El margen lo maneja su contenedor padre */
+        }
         .collage-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
@@ -740,6 +743,7 @@
     </script>
 </body>
 </html>
+
 
 
 
