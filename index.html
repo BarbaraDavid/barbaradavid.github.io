@@ -567,7 +567,39 @@
                 height: 60px; /* Más pequeñitas para que entren bien */
             }
         }
+/* --- ESTILOS PARA MÓVIL (INDICACIONES) --- */
+        .instruccion-movil {
+            display: none; /* Se oculta en computadoras */
+        }
 
+        @media (max-width: 768px) {
+            .instruccion-movil {
+                display: block;
+                text-align: center;
+                font-size: 0.8rem;
+                color: var(--accent-color);
+                font-style: italic;
+                margin-top: -2rem; /* Sube el texto para que esté cerca del subtítulo */
+                margin-bottom: 2.5rem;
+                letter-spacing: 1px;
+                animation: pulse 2.5s infinite;
+            }
+            
+            /* Indicación extra dentro del modal */
+            .solo-movil-indicacion {
+                display: block;
+                font-size: 0.75rem;
+                color: #999;
+                text-align: center;
+                margin-bottom: 15px;
+            }
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
     </style>
 </head>
 <body>
@@ -622,9 +654,10 @@
         </div>
     </section>
 
-    <section id="obras">
-        <h2 class="section-title">Colección</h2>
-        <p class="section-subtitle">Piezas únicas hechas a mano.</p>
+<section id="obras">
+    <h2 class="section-title">Colección</h2>
+    <p class="section-subtitle">Piezas únicas hechas a mano.</p>
+    <p class="instruccion-movil">Toca una obra para ver detalles.</p>
         
         <div class="grid-obras">
             <div class="obra-card" onclick="openModal(1)">
@@ -889,6 +922,7 @@
     </script>
 </body>
 </html>
+
 
 
 
