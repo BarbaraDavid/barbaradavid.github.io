@@ -836,7 +836,7 @@
         const collageContainer = document.getElementById('collage-container');
         const collageGrid = document.getElementById('modal-collage-grid');
 
-        function openModal(id) {
+function openModal(id) {
             const art = artworks.find(item => item.id === id);
             
             if(art) {
@@ -847,24 +847,30 @@
                 mImgMain.src = art.imgMain;
                 mImgMain.style.opacity = 1; 
                 
-// 2. Link correo y comportamiento del botón
-const subject = encodeURIComponent(`Consulta sobre obra: ${art.title}`);
-const body = encodeURIComponent(`Hola Bárbara,\n\nEstoy interesado/a en la obra "${art.title}". ¿Podrías darme más información?`);
+                // 2. Link correo y comportamiento del botón
+                const subject = encodeURIComponent(`Consulta sobre obra: ${art.title}`);
+                const body = encodeURIComponent(`Hola Bárbara,\n\nEstoy interesado/a en la obra "${art.title}". ¿Podrías darme más información?`);
+                const mailtoUrl = `mailto:barbaradavid.arte@gmail.com?subject=${subject}&body=${body}`;
 
-// Seteamos el mailto
-mQuoteBtn.href = `mailto:barbaradavid.arte@gmail.com?subject=${subject}&body=${body}`;
+                // Seteamos el href (importante para que se vea el link abajo a la izquierda)
+                mQuoteBtn.href = mailtoUrl;
 
-// Agregamos el comportamiento para laptop: cerrar modal y bajar al contacto
-mQuoteBtn.onclick = function() {
-    // 1. Cerramos el modal primero
-    closeModal();
-    
-    // 2. Pequeña espera para que la animación de cierre no sea brusca
-    setTimeout(() => {
-        // 3. Movemos la página a la sección de contacto
-        window.location.hash = "contacto";
-    }, 300);
-};
+                // COMPORTAMIENTO MEJORADO
+                mQuoteBtn.onclick = function(e) {
+                    // Evitamos que el navegador haga el salto por defecto para controlarlo nosotros
+                    e.preventDefault();
+                    
+                    // Abrimos el correo en una ventana/proceso aparte
+                    window.location.href = mailtoUrl;
+                    
+                    // Cerramos el modal
+                    closeModal();
+                    
+                    // Llevamos la vista a la sección de contacto (Home) después de un pequeño delay
+                    setTimeout(() => {
+                        document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+                    }, 300);
+                };
 
                 // --- 3. LÓGICA DEL COLLAGE ---
                 collageGrid.innerHTML = ""; 
@@ -896,7 +902,7 @@ mQuoteBtn.onclick = function() {
                     collageContainer.style.display = 'none';
                 }
 
-                // 4. LÓGICA DEL VIDEO (Con botón pantalla completa)
+                // 4. LÓGICA DEL VIDEO
                 if(art.video && art.video !== "") {
                     mVideo.src = art.video;
                     videoWrapper.style.display = 'block'; 
@@ -907,7 +913,7 @@ mQuoteBtn.onclick = function() {
 
                 // --- 5. MOSTRAR EL MODAL ---
                 modal.style.display = 'block';
-                modal.scrollTop = 0; // <--- ESTA LÍNEA MÁGICA RESETEA EL SCROLL ARRIBA
+                modal.scrollTop = 0; 
                 document.body.style.overflow = 'hidden';
             }
         }
@@ -936,6 +942,7 @@ mQuoteBtn.onclick = function() {
     </script>
 </body>
 </html>
+
 
 
 
